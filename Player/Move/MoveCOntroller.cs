@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class MoveCOntroller : MonoBehaviour
     private Rigidbody2D rb;
     private Check check;
     public Animator anim;
+    [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
     [Header("人物属性")]
@@ -37,12 +39,17 @@ public class MoveCOntroller : MonoBehaviour
     private bool isPressA;
     private bool isPressD;
     [Header("广播")]
+    public VoidEventSO CaremaImpulseEvent;
     public FlaotEventSO PowerChangeEvent;
     public AudioEventSO DashAudioEvent;
     public AudioEventSO JumpAudioEvent;
     public AudioClip DashClip;
     public AudioClip JumpClip;
-    
+    [Header("人物死亡")]
+    public bool isDead;
+    [Header("事件监听")]
+    public VoidEventSO DeadEvent;
+    public VoidEventSO IncreaseEnergyEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -66,6 +73,10 @@ public class MoveCOntroller : MonoBehaviour
     {
         var Power_presentage = DashTimeCount / FullDashPower;
         PowerChangeEvent?.FloatRaiseEvent(Power_presentage);
+        if (DashTimeCount > 2 * Dash_count)
+        {
+            DashTimeCount = 2 * Dash_count;
+        }
     }
     void FixedUpdate()
     {
@@ -179,9 +190,43 @@ public class MoveCOntroller : MonoBehaviour
             Forpower = new Vector2(gameObject.transform.localScale.x * DashPower, -DashPower_High);
         }
         rb.velocity = Forpower;
+        CaremaImpulseEvent.RaiseEvent();
         yield return new WaitForSeconds(DashTime);
         rb.gravityScale = MainGravity;
         rb.velocity = new Vector2(rb.velocity.x, 1);
         isDash = false;
+    }
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "CanDestory" && isDash)
+        {
+            CanDestory_Item = other.GetComponent<IDestroyed>();
+            CanDestory_Item.DestoryAction();
+        }
+    }
+    private void OnEnable()
+    {
+        DeadEvent.OnEventRaised += Dead;
+        IncreaseEnergyEvent.OnEventRaised += OnIncreaseEnergy;
+    }
+
+    private void OnIncreaseEnergy()
+    {
+        DashTimeCount += 2;
+    }
+
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            Debug.Log("Dead");
+            isDead = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        DeadEvent.OnEventRaised -= Dead;
+        IncreaseEnergyEvent.OnEventRaised -= OnIncreaseEnergy;
     }
 }

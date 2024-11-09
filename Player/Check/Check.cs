@@ -10,7 +10,7 @@ public class Check : MonoBehaviour
     [Header("µÿ√ÊCheck")]
     public Vector2 Left_Up_position;
     public Vector2 Right_Down_position;
-    public float GroundR;
+    private float GroundR;
     public LayerMask ground;
     private void Update()
     {
@@ -23,7 +23,7 @@ public class Check : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere((Vector2)transform.position + Left_Up_position, GroundR);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Right_Down_position, GroundR);
+        Gizmos.DrawWireSphere((Vector2)transform.position + Left_Up_position, 0.05f);
+        Gizmos.DrawWireSphere((Vector2)transform.position + Right_Down_position, 0.05f);
     }
  }

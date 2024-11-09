@@ -206,6 +206,7 @@ Transform:
   m_Children:
   - {fileID: 7340658971921637353}
   - {fileID: 3423979626115165843}
+  - {fileID: 3948307391357301860}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6308602637353864670
@@ -319,7 +320,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03908348, y: -0.09119192}
+  m_Offset: {x: -0.030068934, y: -0.09119192}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -330,7 +331,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5570717, y: 0.81761616}
+  m_Size: {x: 0.6912867, y: 0.81761616}
   m_EdgeRadius: 0
 --- !u!114 &8495494472366461071
 MonoBehaviour:
@@ -346,23 +347,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   PlayerSpeed: 300
-  JumpHigh: 15
-  Jump_count: 2
-  JumpCCount: 0
+  StartJump: 0
+  Target_Jump_Time: 0
+  OnJump: 0
   DashPower: 40
   DashPower_High: 35
   DashTime: 0.12
   Dash_count: 2
   DashTimeCount: 0
   FullDashPower: 0
-  isPressW: 0
-  isPressS: 0
-  Jump_Smoke_Event: {fileID: 11400000, guid: d686fa9c66b9f804cb40649a6d86498e, type: 2}
   PowerChangeEvent: {fileID: 11400000, guid: a54559d5e988cc141a6f68be28a57cad, type: 2}
   DashAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   JumpAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   DashClip: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   JumpClip: {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
+  isDead: 0
+  DeadEvent: {fileID: 0}
+  IncreaseEnergyEvent: {fileID: 0}
 --- !u!114 &2263843393028257447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,11 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7133cc496be0acb4ca68dd3e1629e6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movecontrol: {fileID: 0}
   IsGround: 0
   Left_Up_position: {x: 0, y: 0}
   Right_Down_position: {x: 0, y: 0}
-  GroundR: 0.05
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -451,3 +450,88 @@ MonoBehaviour:
   FootStepClip1: {fileID: 8300000, guid: 808f25c17e051104fbc0e549f705b96b, type: 3}
   FootStepClip2: {fileID: 8300000, guid: 93353f5e218aa6b48a02c384c2d39767, type: 3}
   FootStepClip3: {fileID: 8300000, guid: df6d1c75a13a64f47b0715a1edd7bd67, type: 3}
+--- !u!1 &6000088565831542208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3948307391357301860}
+  - component: {fileID: 902492687227653581}
+  m_Layer: 0
+  m_Name: Carema Impulse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3948307391357301860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000088565831542208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5673691836761404177}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902492687227653581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000088565831542208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.1
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0.15, y: 0, z: 0}

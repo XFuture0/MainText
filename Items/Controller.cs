@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour, Iinteractive
     public Sprite CloseSprite;
     public GameObject Light;
     public bool isTranSpot;
+    [HideInInspector]public bool isCloseDoor;
     private void Awake()
     {
         TranSpotEvent = GetComponent<TranSpotController>();
@@ -22,9 +23,14 @@ public class Controller : MonoBehaviour, Iinteractive
         spriterenderer.sprite = CloseSprite;
         gameObject.tag = ("Untagged");
         Light.SetActive(true);
+        CLoseDoor();
         if (isTranSpot)
         {
             TranSpotEvent.OpenTransform();
         }
+    }
+    public void CLoseDoor()
+    {
+        isCloseDoor = true;
     }
 }
