@@ -1,0 +1,748 @@
+fileFormatVersion: 2
+guid: 695398f71437a5841a3efaa32b4df4c5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: The Hive_Frame_0
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 46
+      width: 32
+      height: 32
+    spriteID: 98e3a834475d4a9428946bc93108d0fa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 46}
+  - name: The Hive_Frame_1
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 46
+      width: 32
+      height: 32
+    spriteID: 54d7552f79b8f8047b22ca7f4d5fbfee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 46}
+  - name: The Hive_Frame_2
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 46
+      width: 32
+      height: 32
+    spriteID: 90dae684b4d38d940a6e22ed7aa07f43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 46}
+  - name: The Hive_Frame_3
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 46
+      width: 32
+      height: 32
+    spriteID: 0e36d3694ce231b4d85c9c704d55053e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 46}
+  - name: The Hive_Frame_4
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 46
+      width: 32
+      height: 32
+    spriteID: cc40dbcf79aa29e4b9943eac9602e21b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 46}
+  - name: The Hive_Frame_5
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 46
+      width: 32
+      height: 32
+    spriteID: 66a938d4933d043468e4bdf816735078
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 46}
+  - name: The Hive_Frame_6
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 86
+      width: 32
+      height: 32
+    spriteID: 455366a15c1458646b0ca49599114cdd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 86}
+  - name: The Hive_Frame_7
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 86
+      width: 32
+      height: 32
+    spriteID: 4892b479c6666574886b51a71d9ba55a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 86}
+  - name: The Hive_Frame_8
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 86
+      width: 32
+      height: 32
+    spriteID: 804d39b80c6ff284fbe67e764cc9595a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 86}
+  - name: The Hive_Frame_9
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 86
+      width: 32
+      height: 32
+    spriteID: 0421d66d994b68949a3e48257cf64825
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 86}
+  - name: The Hive_Frame_10
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 86
+      width: 32
+      height: 32
+    spriteID: f6c900bb7477a1e439b7942708fa79da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 86}
+  - name: The Hive_Frame_11
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 86
+      width: 32
+      height: 32
+    spriteID: ff0b6dce975ef3c4590e07cf999c30a5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 86}
+  - name: The Hive_Frame_12
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 126
+      width: 32
+      height: 32
+    spriteID: 88d9e614bcc38bd4d9c937659a73099e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 126}
+  - name: The Hive_Frame_13
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 126
+      width: 32
+      height: 32
+    spriteID: 5c4f0650021b4d34eb1f20b07e9f8e52
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 126}
+  - name: The Hive_Frame_14
+    originalName: 
+    pivot: {x: 0.5116279, y: -0.29411766}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 43
+      height: 34
+    spriteID: fe9ca8c45687e4e46b1e4d1bbf0b28ad
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: The Hive_Frame_15
+    originalName: 
+    pivot: {x: 0.48837212, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 108
+      y: 4
+      width: 43
+      height: 32
+    spriteID: c5bd81b8ad0b7724c965d2c8457c7e12
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 108, y: 4}
+  - name: The Hive_Frame_16
+    originalName: 
+    pivot: {x: 0.48888886, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 4
+      width: 45
+      height: 32
+    spriteID: 6f58eb6597bdb6e44baa2cc4df693ec9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 4}
+  - name: The Hive_Frame_17
+    originalName: 
+    pivot: {x: 0.6363636, y: -0.34375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 159
+      y: 4
+      width: 33
+      height: 32
+    spriteID: 76a02b323cb648b448916af7ccabb489
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 159, y: 4}
+  - name: The Hive_Frame_18
+    originalName: 
+    pivot: {x: 0.62499994, y: -0.3030303}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 4
+      width: 32
+      height: 33
+    spriteID: db239dfa8062c924a8f094502d836baf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 200, y: 4}
+  - name: The Hive_Frame_19
+    originalName: 
+    pivot: {x: 0.62499994, y: -1.5294118}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 126
+      width: 32
+      height: 17
+    spriteID: 8f7555a350b7d9547991e9ee8c8c08dc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 126}
+  - name: The Hive_Frame_20
+    originalName: 
+    pivot: {x: 0.62499994, y: -1.5294118}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 126
+      width: 32
+      height: 17
+    spriteID: 527181b22e8c90f41add8a9f4e2be918
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 126}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 191600067
+    name: The Hive
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: The Hive_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 98e3a834475d4a9428946bc93108d0fa
+    - name: The Hive_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 54d7552f79b8f8047b22ca7f4d5fbfee
+    - name: The Hive_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 90dae684b4d38d940a6e22ed7aa07f43
+    - name: The Hive_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 0e36d3694ce231b4d85c9c704d55053e
+    - name: The Hive_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: cc40dbcf79aa29e4b9943eac9602e21b
+    - name: The Hive_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 66a938d4933d043468e4bdf816735078
+    - name: The Hive_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 455366a15c1458646b0ca49599114cdd
+    - name: The Hive_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 4892b479c6666574886b51a71d9ba55a
+    - name: The Hive_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 804d39b80c6ff284fbe67e764cc9595a
+    - name: The Hive_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 0421d66d994b68949a3e48257cf64825
+    - name: The Hive_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: f6c900bb7477a1e439b7942708fa79da
+    - name: The Hive_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: ff0b6dce975ef3c4590e07cf999c30a5
+    - name: The Hive_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 88d9e614bcc38bd4d9c937659a73099e
+    - name: The Hive_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 11
+        width: 32
+        height: 32
+      spriteId: 5c4f0650021b4d34eb1f20b07e9f8e52
+    - name: The Hive_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 10
+        width: 43
+        height: 34
+      spriteId: fe9ca8c45687e4e46b1e4d1bbf0b28ad
+    - name: The Hive_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 11
+        width: 43
+        height: 32
+      spriteId: c5bd81b8ad0b7724c965d2c8457c7e12
+    - name: The Hive_Frame_16
+      frameIndex: 16
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 11
+        width: 45
+        height: 32
+      spriteId: 6f58eb6597bdb6e44baa2cc4df693ec9
+    - name: The Hive_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 11
+        width: 33
+        height: 32
+      spriteId: 76a02b323cb648b448916af7ccabb489
+    - name: The Hive_Frame_18
+      frameIndex: 18
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 10
+        width: 32
+        height: 33
+      spriteId: db239dfa8062c924a8f094502d836baf
+    - name: The Hive_Frame_19
+      frameIndex: 19
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 26
+        width: 32
+        height: 17
+      spriteId: 8f7555a350b7d9547991e9ee8c8c08dc
+    - name: The Hive_Frame_20
+      frameIndex: 20
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 26
+        width: 32
+        height: 17
+      spriteId: 527181b22e8c90f41add8a9f4e2be918
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 78, y: 43}
