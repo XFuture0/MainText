@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - interactable
+  - CanDestory
+  - Bound
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - NotPlayer
+  - Water
+  - UI
+  - ground
+  - Player
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: back
+    uniqueID: 3925756457
+    locked: 0
+  - name: center
+    uniqueID: 1155908031
+    locked: 0
+  - name: float
+    uniqueID: 2028181347
+    locked: 0
