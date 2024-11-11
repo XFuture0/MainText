@@ -16,6 +16,7 @@ public class MoveCOntroller : MonoBehaviour
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
+    private float CurrentBoomSpeed;
     [Header("人物属性")]
     public float PlayerSpeed;
     [Header("人物跳跃")]
@@ -50,6 +51,8 @@ public class MoveCOntroller : MonoBehaviour
     [Header("事件监听")]
     public VoidEventSO DeadEvent;
     public VoidEventSO IncreaseEnergyEvent;
+    public FlaotEventSO BoomSpeed;
+    public FlaotEventSO BoomHigh;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -208,8 +211,20 @@ public class MoveCOntroller : MonoBehaviour
     {
         DeadEvent.OnEventRaised += Dead;
         IncreaseEnergyEvent.OnEventRaised += OnIncreaseEnergy;
+        BoomSpeed.OnFloatEventRaised += OnBoomSpeed;
+        BoomHigh.OnFloatEventRaised += OnBoomHigh;
     }
 
+    private void OnBoomHigh(float BoomHigh)
+    {
+        rb.velocity = new Vector2(-PlayerFace * CurrentBoomSpeed, BoomHigh);
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
+
+    private void OnBoomSpeed(float Boomspeeding)
+    {
+        CurrentBoomSpeed = Boomspeeding; 
+    }
     private void OnIncreaseEnergy()
     {
         DashTimeCount += 2;
@@ -228,5 +243,7 @@ public class MoveCOntroller : MonoBehaviour
     {
         DeadEvent.OnEventRaised -= Dead;
         IncreaseEnergyEvent.OnEventRaised -= OnIncreaseEnergy;
+        BoomSpeed.OnFloatEventRaised -= OnBoomSpeed;
+        BoomHigh.OnFloatEventRaised -= OnBoomHigh;
     }
 }
