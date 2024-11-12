@@ -16,9 +16,11 @@ public class MoveCOntroller : MonoBehaviour
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
-    private float CurrentBoomSpeed;
+    private float Current_Boom_time;
+    private bool isBoom;
     [Header("人物属性")]
     public float PlayerSpeed;
+    private float CurrentPlayerSpeed;
     [Header("人物跳跃")]
     public float StartJump;
     private float Jump_time;
@@ -51,8 +53,7 @@ public class MoveCOntroller : MonoBehaviour
     [Header("事件监听")]
     public VoidEventSO DeadEvent;
     public VoidEventSO IncreaseEnergyEvent;
-    public FlaotEventSO BoomSpeed;
-    public FlaotEventSO BoomHigh;
+    public GravityEventSO BoomSpeed;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -71,6 +72,7 @@ public class MoveCOntroller : MonoBehaviour
         DashTimeCount = 2 * Dash_count;
         FullDashPower = 2 * Dash_count;
         MainGravity = rb.gravityScale;
+        CurrentPlayerSpeed = PlayerSpeed;
     }
     private void Update()
     {
@@ -83,7 +85,7 @@ public class MoveCOntroller : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!isDash)
+        if (!isDash && !isBoom)
         {
             Move();
             if (DashTimeCount < 2 * Dash_count)
@@ -104,6 +106,10 @@ public class MoveCOntroller : MonoBehaviour
         {
             Jump_time = 0;
             isJump = false;
+        }
+        if (isBoom)
+        {
+            rb.velocity = new Vector2(-PlayerSpeed * Time.deltaTime, rb.velocity.y);
         }
     }
 
@@ -173,7 +179,6 @@ public class MoveCOntroller : MonoBehaviour
     }
     public IEnumerator Dashing()
     {
-        rb.gravityScale = 0;
         isDash = true;
         Forpower = new Vector2(gameObject.transform.localScale.x * DashPower, 0);
         if (isPressW && !(isPressA || isPressD))
@@ -195,7 +200,6 @@ public class MoveCOntroller : MonoBehaviour
         rb.velocity = Forpower;
         CaremaImpulseEvent.RaiseEvent();
         yield return new WaitForSeconds(DashTime);
-        rb.gravityScale = MainGravity;
         rb.velocity = new Vector2(rb.velocity.x, 1);
         isDash = false;
     }
@@ -211,19 +215,25 @@ public class MoveCOntroller : MonoBehaviour
     {
         DeadEvent.OnEventRaised += Dead;
         IncreaseEnergyEvent.OnEventRaised += OnIncreaseEnergy;
-        BoomSpeed.OnFloatEventRaised += OnBoomSpeed;
-        BoomHigh.OnFloatEventRaised += OnBoomHigh;
+        BoomSpeed.OnGravityEventRaised += OnBoomSpeed;
     }
 
-    private void OnBoomHigh(float BoomHigh)
+    private void OnBoomSpeed(float BoomSpeeding, float BoomHighing, float Boom_Gravity, float Boom_time)
     {
-        rb.velocity = new Vector2(-PlayerFace * CurrentBoomSpeed, BoomHigh);
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        isBoom = true;
+        transform.localScale = new Vector3 (-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        rb.gravityScale = Boom_Gravity;
+        PlayerSpeed = BoomSpeeding;
+        rb.velocity = new Vector2(transform.localScale.x * 60, BoomHighing);
+        Current_Boom_time = Boom_time;
+        StartCoroutine(Boom_Over());
     }
-
-    private void OnBoomSpeed(float Boomspeeding)
+    private IEnumerator Boom_Over()
     {
-        CurrentBoomSpeed = Boomspeeding; 
+        yield return new WaitForSeconds(Current_Boom_time);
+        rb.gravityScale = MainGravity;
+        PlayerSpeed = CurrentPlayerSpeed;
+        isBoom = false;
     }
     private void OnIncreaseEnergy()
     {
@@ -243,7 +253,6 @@ public class MoveCOntroller : MonoBehaviour
     {
         DeadEvent.OnEventRaised -= Dead;
         IncreaseEnergyEvent.OnEventRaised -= OnIncreaseEnergy;
-        BoomSpeed.OnFloatEventRaised -= OnBoomSpeed;
-        BoomHigh.OnFloatEventRaised -= OnBoomHigh;
+        BoomSpeed.OnGravityEventRaised -= OnBoomSpeed;
     }
 }

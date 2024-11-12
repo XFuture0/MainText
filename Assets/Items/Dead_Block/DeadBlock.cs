@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeadBlock : MonoBehaviour
 {
     public VoidEventSO DeadEvent;
-    public void OnTriggerStay2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
