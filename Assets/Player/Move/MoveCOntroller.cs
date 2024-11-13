@@ -17,7 +17,9 @@ public class MoveCOntroller : MonoBehaviour
     private Vector2 MoveMent;
     private float PlayerFace;
     private float Current_Boom_time;
-    private bool isBoom;
+    private bool isBoomFront;
+    private bool isBoomHigh;
+    private float BoomHighPower;
     [Header("人物属性")]
     public float PlayerSpeed;
     private float CurrentPlayerSpeed;
@@ -48,12 +50,16 @@ public class MoveCOntroller : MonoBehaviour
     public AudioEventSO JumpAudioEvent;
     public AudioClip DashClip;
     public AudioClip JumpClip;
+    public VoidEventSO RestartEvent;
+    public VoidEventSO FadeinEvent;
     [Header("人物死亡")]
     public bool isDead;
     [Header("事件监听")]
     public VoidEventSO DeadEvent;
     public VoidEventSO IncreaseEnergyEvent;
     public GravityEventSO BoomSpeed;
+    public GravityEventSO BoomHigh;
+    public VoidEventSO DeadRestart;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -82,10 +88,12 @@ public class MoveCOntroller : MonoBehaviour
         {
             DashTimeCount = 2 * Dash_count;
         }
+        anim.SetFloat("PlaySpeed", math.abs(rb.velocity.x));
     }
     void FixedUpdate()
     {
-        if (!isDash && !isBoom)
+        
+        if (!isDash && !isBoomFront && !isBoomHigh)
         {
             Move();
             if (DashTimeCount < 2 * Dash_count)
@@ -107,9 +115,21 @@ public class MoveCOntroller : MonoBehaviour
             Jump_time = 0;
             isJump = false;
         }
-        if (isBoom)
+        if (isBoomFront)
         {
-            rb.velocity = new Vector2(-PlayerSpeed * Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(-PlayerSpeed * Time.deltaTime, 0);
+            if (isPressW)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 5);
+            }
+            if (isPressS)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -5);
+            }
+        }
+        if (isBoomHigh)
+        {
+            rb.velocity = new Vector2(0, BoomHighPower);
         }
     }
 
@@ -117,7 +137,6 @@ public class MoveCOntroller : MonoBehaviour
     {
         MoveMent = inputActions.Player.Move.ReadValue<Vector2>();
         rb.velocity = new Vector2(MoveMent.x * PlayerSpeed * Time.deltaTime, rb.velocity.y);
-        anim.SetFloat("PlaySpeed",math.abs(rb.velocity.x));
         PlayerFace = (int)transform.localScale.x;
         if (MoveMent.x > 0)
         {
@@ -216,24 +235,44 @@ public class MoveCOntroller : MonoBehaviour
         DeadEvent.OnEventRaised += Dead;
         IncreaseEnergyEvent.OnEventRaised += OnIncreaseEnergy;
         BoomSpeed.OnGravityEventRaised += OnBoomSpeed;
+        BoomHigh.OnGravityEventRaised += OnBoomHigh;
+        DeadRestart.OnEventRaised += OnDeadRestart;
     }
 
-    private void OnBoomSpeed(float BoomSpeeding, float BoomHighing, float Boom_Gravity, float Boom_time)
+    private void OnDeadRestart()
     {
-        isBoom = true;
-        transform.localScale = new Vector3 (-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        rb.gravityScale = Boom_Gravity;
-        PlayerSpeed = BoomSpeeding;
-        rb.velocity = new Vector2(transform.localScale.x * 60, BoomHighing);
-        Current_Boom_time = Boom_time;
-        StartCoroutine(Boom_Over());
+        isDead = false;
     }
-    private IEnumerator Boom_Over()
+
+    private void OnBoomHigh(float BoomHighing, float Boom_time)
+    {
+        rb.gravityScale = 0;
+        isBoomHigh = true;
+        BoomHighPower = BoomHighing;
+        Current_Boom_time = Boom_time;
+        StartCoroutine(BoomHigh_Over());
+    }
+    private IEnumerator BoomHigh_Over()
+    {
+        yield return new WaitForSeconds(Current_Boom_time);
+        rb.gravityScale = MainGravity;
+        isBoomHigh = false;
+    }
+    private void OnBoomSpeed(float BoomSpeeding,float Boom_time)
+    {
+        rb.gravityScale = 0;
+        isBoomFront = true;
+        transform.localScale = new Vector3 (-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        PlayerSpeed = BoomSpeeding;
+        Current_Boom_time = Boom_time;
+        StartCoroutine(BoomFront_Over());
+    }
+    private IEnumerator BoomFront_Over()
     {
         yield return new WaitForSeconds(Current_Boom_time);
         rb.gravityScale = MainGravity;
         PlayerSpeed = CurrentPlayerSpeed;
-        isBoom = false;
+        isBoomFront = false;
     }
     private void OnIncreaseEnergy()
     {
@@ -244,15 +283,25 @@ public class MoveCOntroller : MonoBehaviour
     {
         if (!isDead)
         {
-            Debug.Log("Dead");
             isDead = true;
+            inputActions.Disable();
+            FadeinEvent.RaiseEvent();
+            StartCoroutine(Restart());
         }
     }
-
+    private IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(2f);
+        RestartEvent.RaiseEvent();
+        yield return new WaitForSeconds(3f);
+        inputActions.Enable();
+    }
     private void OnDisable()
     {
         DeadEvent.OnEventRaised -= Dead;
         IncreaseEnergyEvent.OnEventRaised -= OnIncreaseEnergy;
         BoomSpeed.OnGravityEventRaised -= OnBoomSpeed;
+        BoomHigh.OnGravityEventRaised -= OnBoomHigh;
+        DeadRestart.OnEventRaised -= OnDeadRestart;
     }
 }

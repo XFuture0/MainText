@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomPoint : MonoBehaviour
+public class BoomUp : MonoBehaviour
 {
-    public GravityEventSO BoomSpeed;
-    public float BoomSpeeding;
+    public GravityEventSO BoomHigh;
+    public float BoomHighing;
     public float Boom_Time;
     private bool isboom;
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!isboom)
         {
-            BoomSpeed.GravityEventRaised(BoomSpeeding,Boom_Time);
+            BoomHigh.GravityEventRaised(BoomHighing, Boom_Time);
             isboom = true;
         }
     }

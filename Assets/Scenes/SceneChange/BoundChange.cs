@@ -11,6 +11,9 @@ public class BoundChange : MonoBehaviour
     private void Awake()
     {
         Confiner2D = GetComponent<CinemachineConfiner2D>();
+    }
+    private void Start()
+    {
         var obj = GameObject.FindGameObjectWithTag("Bound");
         if (obj == null)
         {

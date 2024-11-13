@@ -12,7 +12,7 @@ public class Check : MonoBehaviour
     public Vector2 Right_Down_position;
     private float GroundR;
     public LayerMask ground;
-    private void Update()
+    private void FixedUpdate()
     {
         Checking();
     }
