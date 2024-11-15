@@ -212,6 +212,54 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""ddd72b1d-23c2-40d8-96d2-5661629f31e4"",
+            ""actions"": [
+                {
+                    ""name"": ""In"",
+                    ""type"": ""Button"",
+                    ""id"": ""03a46e5a-c245-4d21-a665-ae46494d385b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Out"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e7b051d-4d79-4231-994c-63c6ca01426e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1b9c2272-0435-44a3-9217-f407e827ebd9"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""In"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf711018-b0e0-4abb-b66e-c624cc00ebe5"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Out"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -226,6 +274,10 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_Player_RightChange = m_Player.FindAction("RightChange", throwIfNotFound: true);
         m_Player_UP = m_Player.FindAction("UP", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_In = m_UI.FindAction("In", throwIfNotFound: true);
+        m_UI_Out = m_UI.FindAction("Out", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -385,6 +437,60 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_In;
+    private readonly InputAction m_UI_Out;
+    public struct UIActions
+    {
+        private @InputPlayController m_Wrapper;
+        public UIActions(@InputPlayController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @In => m_Wrapper.m_UI_In;
+        public InputAction @Out => m_Wrapper.m_UI_Out;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @In.started += instance.OnIn;
+            @In.performed += instance.OnIn;
+            @In.canceled += instance.OnIn;
+            @Out.started += instance.OnOut;
+            @Out.performed += instance.OnOut;
+            @Out.canceled += instance.OnOut;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @In.started -= instance.OnIn;
+            @In.performed -= instance.OnIn;
+            @In.canceled -= instance.OnIn;
+            @Out.started -= instance.OnOut;
+            @Out.performed -= instance.OnOut;
+            @Out.canceled -= instance.OnOut;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -395,5 +501,10 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnRightChange(InputAction.CallbackContext context);
         void OnUP(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnIn(InputAction.CallbackContext context);
+        void OnOut(InputAction.CallbackContext context);
     }
 }

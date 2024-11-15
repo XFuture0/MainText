@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class CameraImpulse : MonoBehaviour
 {
+    public CinemachineImpulseSource DashImpulsing;
     [Header("¹ã²¥")]
     public VoidEventSO CaremaImpulseEvent;
-    public CinemachineImpulseSource DashImpulsing;
     private void OnEnable()
     {
         CaremaImpulseEvent.OnEventRaised += Impulsing;
