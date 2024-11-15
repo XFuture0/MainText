@@ -93,7 +93,7 @@ public class MoveCOntroller : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (!isDash && !isBoomFront && !isBoomHigh)
+        if (!isDash && !isBoomFront && !isBoomHigh && !isDead)
         {
             Move();
             if (DashTimeCount < 2 * Dash_count)
@@ -192,6 +192,7 @@ public class MoveCOntroller : MonoBehaviour
         if (DashTimeCount >= 2)
         {
             DashTimeCount -= 2;
+            rb.gravityScale = 0;
             DashAudioEvent.AudioRaiseEvent(DashClip);
             StartCoroutine(Dashing());
         }
@@ -219,6 +220,7 @@ public class MoveCOntroller : MonoBehaviour
         rb.velocity = Forpower;
         CaremaImpulseEvent.RaiseEvent();
         yield return new WaitForSeconds(DashTime);
+        rb.gravityScale = MainGravity;
         rb.velocity = new Vector2(rb.velocity.x, 1);
         isDash = false;
     }
@@ -285,6 +287,7 @@ public class MoveCOntroller : MonoBehaviour
         {
             isDead = true;
             inputActions.Disable();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             FadeinEvent.RaiseEvent();
             StartCoroutine(Restart());
         }
@@ -294,6 +297,7 @@ public class MoveCOntroller : MonoBehaviour
         yield return new WaitForSeconds(2f);
         RestartEvent.RaiseEvent();
         yield return new WaitForSeconds(3f);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         inputActions.Enable();
     }
     private void OnDisable()
