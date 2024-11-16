@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f429a68fe75e18489fee2fb8c2a5672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioEventFX: {fileID: 0}
+  AudioEventFX: {fileID: 11400000, guid: 991ec18d983333845b17976f44a6b316, type: 2}
   Clip: {fileID: 8300000, guid: 2753e0ec23a74d6448d91f0be83c3551, type: 3}
   anim: {fileID: 2731716832013497520}
   SaveLight: {fileID: 1843305592353178945}

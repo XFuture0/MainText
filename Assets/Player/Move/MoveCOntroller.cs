@@ -285,6 +285,7 @@ public class MoveCOntroller : MonoBehaviour
     {
         if (!isDead)
         {
+            anim.SetTrigger("Dead");
             isDead = true;
             inputActions.Disable();
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -297,6 +298,8 @@ public class MoveCOntroller : MonoBehaviour
         yield return new WaitForSeconds(2f);
         RestartEvent.RaiseEvent();
         yield return new WaitForSeconds(3f);
+        anim.SetTrigger("Revive");
+        yield return new WaitForSeconds(1f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         inputActions.Enable();
     }
