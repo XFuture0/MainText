@@ -5,8 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 public class Start_text : MonoBehaviour
 {
+    public SceneSO currentscene;
+    public SceneSO ChangeScene;
+    public Vector3 ChangePosition;
     private bool canPressX;
     private string Name;
     public Button Start;
@@ -14,6 +18,8 @@ public class Start_text : MonoBehaviour
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO Setting_State_Open_Event;
     public VoidEventSO Setting_State_Close_Event;
+    [Header("¹ã²¥")]
+    public SceneChangeEventSO NewGameEvent;
     private void Awake()
     {
         inputActions = new InputPlayController();
@@ -55,6 +61,7 @@ public class Start_text : MonoBehaviour
     }
     public void StartGame()
     {
-        Debug.Log("Start Game");
+        NewGameEvent.RaiseSceneChangeEvent(currentscene,ChangeScene,ChangePosition);
+        SceneManager.UnloadSceneAsync(currentscene.SceneName);
     }
 }

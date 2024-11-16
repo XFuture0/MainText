@@ -8,6 +8,7 @@ public class CaremaChange : MonoBehaviour
 {
     public CinemachineVirtualCamera VirtualCamera;
     public Transform Current_Tranform;
+    public Transform Player;
     public float SizeChange_X;
     public float SizeChange_Z;
     public bool isPressX;
@@ -18,6 +19,7 @@ public class CaremaChange : MonoBehaviour
     public TransformEventSO Press_Z_TransformEvent;
     public GameObjectEventSO FirstSelectEvent;
     public VoidEventSO Setting_State_Close_Event;
+    public VoidEventSO LookPlayerEvent;
     [Header("¹ã²¥")]
     public VoidEventSO ReturnEvent;
     public VoidEventSO X_In_Event;
@@ -51,6 +53,14 @@ public class CaremaChange : MonoBehaviour
         Press_Z_TransformEvent.OnTransformEventRaised += OnPress_Z_TransformEvent;
         FirstSelectEvent.OnGameObjectEventRaised += OnFirstSelect;
         Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
+        LookPlayerEvent.OnEventRaised += OnLookPlayer;
+    }
+
+    private void OnLookPlayer()
+    {
+        VirtualCamera.Follow = Player;
+        VirtualCamera.LookAt = Player;
+        VirtualCamera.m_Lens.OrthographicSize = 5.42f;
     }
 
     private void OnSetting_Close_State()
@@ -109,5 +119,6 @@ public class CaremaChange : MonoBehaviour
         Press_Z_TransformEvent.OnTransformEventRaised -= OnPress_Z_TransformEvent;
         FirstSelectEvent.OnGameObjectEventRaised -= OnFirstSelect;
         Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
+        LookPlayerEvent.OnEventRaised -= OnLookPlayer;
     }
 }

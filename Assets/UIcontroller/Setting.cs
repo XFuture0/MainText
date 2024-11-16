@@ -20,8 +20,11 @@ public class Setting : MonoBehaviour
     }
     private void OnOut(InputAction.CallbackContext context)
     {
-        Settings.SetActive(false);
-        Setting_State_Close_Event.RaiseEvent();
+        if (Settings.activeSelf == true)
+        {
+            Settings.SetActive(false);
+            Setting_State_Close_Event.RaiseEvent();
+        }
     }
     private void OnEnable()
     {
