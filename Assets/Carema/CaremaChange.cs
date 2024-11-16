@@ -17,6 +17,7 @@ public class CaremaChange : MonoBehaviour
     public TransformEventSO Press_X_TransformEvent;
     public TransformEventSO Press_Z_TransformEvent;
     public GameObjectEventSO FirstSelectEvent;
+    public VoidEventSO Setting_State_Close_Event;
     [Header("¹ã²¥")]
     public VoidEventSO ReturnEvent;
     public VoidEventSO X_In_Event;
@@ -49,6 +50,12 @@ public class CaremaChange : MonoBehaviour
         Press_X_TransformEvent.OnTransformEventRaised += OnPress_X_TransformEvent;
         Press_Z_TransformEvent.OnTransformEventRaised += OnPress_Z_TransformEvent;
         FirstSelectEvent.OnGameObjectEventRaised += OnFirstSelect;
+        Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
+    }
+
+    private void OnSetting_Close_State()
+    {
+        EventSystem.current.SetSelectedGameObject(FirseSelecting);
     }
 
     private void OnFirstSelect(GameObject firstselect)
@@ -101,5 +108,6 @@ public class CaremaChange : MonoBehaviour
         Press_X_TransformEvent.OnTransformEventRaised -= OnPress_X_TransformEvent;
         Press_Z_TransformEvent.OnTransformEventRaised -= OnPress_Z_TransformEvent;
         FirstSelectEvent.OnGameObjectEventRaised -= OnFirstSelect;
+        Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
     }
 }

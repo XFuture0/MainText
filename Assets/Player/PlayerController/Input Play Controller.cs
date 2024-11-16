@@ -234,6 +234,15 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""057b26b1-756a-4f94-bcfe-3c68ed8f8869"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -258,6 +267,17 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""action"": ""Out"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea6b0423-4950-4d56-8b8d-7b43bd9af77e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -278,6 +298,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_In = m_UI.FindAction("In", throwIfNotFound: true);
         m_UI_Out = m_UI.FindAction("Out", throwIfNotFound: true);
+        m_UI_Settings = m_UI.FindAction("Settings", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -443,12 +464,14 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_In;
     private readonly InputAction m_UI_Out;
+    private readonly InputAction m_UI_Settings;
     public struct UIActions
     {
         private @InputPlayController m_Wrapper;
         public UIActions(@InputPlayController wrapper) { m_Wrapper = wrapper; }
         public InputAction @In => m_Wrapper.m_UI_In;
         public InputAction @Out => m_Wrapper.m_UI_Out;
+        public InputAction @Settings => m_Wrapper.m_UI_Settings;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +487,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Out.started += instance.OnOut;
             @Out.performed += instance.OnOut;
             @Out.canceled += instance.OnOut;
+            @Settings.started += instance.OnSettings;
+            @Settings.performed += instance.OnSettings;
+            @Settings.canceled += instance.OnSettings;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -474,6 +500,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Out.started -= instance.OnOut;
             @Out.performed -= instance.OnOut;
             @Out.canceled -= instance.OnOut;
+            @Settings.started -= instance.OnSettings;
+            @Settings.performed -= instance.OnSettings;
+            @Settings.canceled -= instance.OnSettings;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -506,5 +535,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     {
         void OnIn(InputAction.CallbackContext context);
         void OnOut(InputAction.CallbackContext context);
+        void OnSettings(InputAction.CallbackContext context);
     }
 }

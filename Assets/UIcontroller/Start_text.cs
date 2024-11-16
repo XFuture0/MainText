@@ -1,61 +1,60 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
-public class UIcontroller : MonoBehaviour
+using System;
+using UnityEngine.EventSystems;
+public class Start_text : MonoBehaviour
 {
-    public InputPlayController inputActions;
-    private bool canPressZ;
     private bool canPressX;
-    [Header("¹ã²¥")]
-    public VoidEventSO Press_X_Event;
-    public VoidEventSO Press_Z_Event;
+    private string Name;
+    public Button Start;
+    public InputPlayController inputActions;
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO Setting_State_Open_Event;
     public VoidEventSO Setting_State_Close_Event;
     private void Awake()
     {
         inputActions = new InputPlayController();
-        inputActions.UI.In.started += OnIn;
-        inputActions.UI.Out.started += OnOut;
-        inputActions.Enable();
-        canPressZ = true;
         canPressX = true;
-    }
-    private void OnIn(InputAction.CallbackContext context)
-    {
-        if (canPressX)
-        {
-            Press_X_Event.RaiseEvent();
-        }
-    }
-    private void OnOut(InputAction.CallbackContext context)
-    {
-        if (canPressZ)
-        {
-            Press_Z_Event.RaiseEvent();
-        }
     }
     private void OnEnable()
     {
+        inputActions.UI.In.started += OnStart;
+        inputActions.Enable();
         Setting_State_Open_Event.OnEventRaised += OnSetting_Open_State;
         Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
     }
 
     private void OnSetting_Close_State()
     {
-        canPressZ = true;
         canPressX = true;
     }
+
     private void OnSetting_Open_State()
     {
-        canPressZ = false;
         canPressX = false;
+    }
+    private void OnStart(InputAction.CallbackContext context)
+    {
+        Name = EventSystem.current.currentSelectedGameObject.name;
+        if (Name == "Start_text")
+        {
+            if (canPressX)
+            {
+                Start?.onClick.Invoke();
+            }
+        }
     }
     private void OnDisable()
     {
+        inputActions.UI.In.started -= OnStart;
         Setting_State_Open_Event.OnEventRaised -= OnSetting_Open_State;
         Setting_State_Close_Event.OnEventRaised -= OnSetting_Close_State;
+    }
+    public void StartGame()
+    {
+        Debug.Log("Start Game");
     }
 }
