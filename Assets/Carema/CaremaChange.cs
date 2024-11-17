@@ -8,18 +8,23 @@ public class CaremaChange : MonoBehaviour
 {
     public CinemachineVirtualCamera VirtualCamera;
     public Transform Current_Tranform;
+    public Transform Current_Tranform_temp;
     public Transform Player;
     public float SizeChange_X;
     public float SizeChange_Z;
     public bool isPressX;
     public bool isPressZ;
     private GameObject FirseSelecting;
+    public GameObject SettingSelecting;
+    private bool isUnLoad;
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO Press_X_TransformEvent;
     public TransformEventSO Press_Z_TransformEvent;
     public GameObjectEventSO FirstSelectEvent;
     public VoidEventSO Setting_State_Close_Event;
     public VoidEventSO LookPlayerEvent;
+    public VoidEventSO UnLoadEvent;
+    public VoidEventSO CloseTargetEvent;
     [Header("¹ã²¥")]
     public VoidEventSO ReturnEvent;
     public VoidEventSO X_In_Event;
@@ -54,6 +59,23 @@ public class CaremaChange : MonoBehaviour
         FirstSelectEvent.OnGameObjectEventRaised += OnFirstSelect;
         Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
         LookPlayerEvent.OnEventRaised += OnLookPlayer;
+        UnLoadEvent.OnEventRaised += OnUnLoad;
+        CloseTargetEvent.OnEventRaised += OnCloseTarget;
+    }
+
+    private void OnCloseTarget()
+    {
+        Current_Tranform = Current_Tranform_temp;
+    }
+
+    private void OnUnLoad()
+    {
+        isUnLoad = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        VirtualCamera.Follow = null;
+        VirtualCamera.LookAt = null;
+        VirtualCamera.transform.position = new Vector3((float)-65.2,(float)4.3, -10);
+        VirtualCamera.m_Lens.OrthographicSize = 2.54f;
     }
 
     private void OnLookPlayer()
@@ -65,7 +87,15 @@ public class CaremaChange : MonoBehaviour
 
     private void OnSetting_Close_State()
     {
-        EventSystem.current.SetSelectedGameObject(FirseSelecting);
+       var SelectFirst = GameObject.FindGameObjectWithTag("UIManager");
+        if (SelectFirst)
+        {
+            EventSystem.current.SetSelectedGameObject(FirseSelecting);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(SettingSelecting);
+        }
     }
 
     private void OnFirstSelect(GameObject firstselect)
@@ -90,8 +120,13 @@ public class CaremaChange : MonoBehaviour
 
     private void OnPress_X_TransformEvent(Transform target)
     {
+        if (isUnLoad)
+        {
+            Current_Tranform.name = "NewTree";
+        }
         if (target.name != Current_Tranform.name)
         {
+            isUnLoad = false;
             Current_Tranform = target;
             VirtualCamera.Follow = Current_Tranform;
             VirtualCamera.LookAt = Current_Tranform;
@@ -120,5 +155,7 @@ public class CaremaChange : MonoBehaviour
         FirstSelectEvent.OnGameObjectEventRaised -= OnFirstSelect;
         Setting_State_Close_Event.OnEventRaised += OnSetting_Close_State;
         LookPlayerEvent.OnEventRaised -= OnLookPlayer;
+        UnLoadEvent.OnEventRaised -= OnUnLoad;
+        CloseTargetEvent.OnEventRaised -= OnCloseTarget;
     }
 }

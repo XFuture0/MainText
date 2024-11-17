@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName = "SceneSO/GameSceneSO")]
 public class SceneSO : ScriptableObject
 {

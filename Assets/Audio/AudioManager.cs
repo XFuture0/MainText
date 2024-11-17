@@ -10,17 +10,27 @@ public class AudioManager : MonoBehaviour
     public AudioEventSO FootStepAudio;
     public AudioEventSO FXEventSO;
     public AudioEventSO TranSpotAudioEvent;
-
+    public FlaotEventSO AudioChangeEvent;
+    [Header("音乐管理器")]
     public AudioSource SavePointsourse;
     public AudioSource FootStepsourse;
     public AudioSource FXsourse;
     public AudioSource BGMsourse;
+    [Header("音量调节器")]
+    public AudioMixer MainMixer;
     private void OnEnable()
     {
         SavePointAudio.OnAudioEventRaised += SavePointing;
         FootStepAudio.OnAudioEventRaised += FootStep;
         FXEventSO.OnAudioEventRaised += FXAudio;
         TranSpotAudioEvent.OnAudioEventRaised += BGMAudio;
+        AudioChangeEvent.OnFloatEventRaised += OnAudioChange;
+    }
+
+    private void OnAudioChange(float ChangeAudio)
+    {
+        ChangeAudio = ChangeAudio * 100 - 80;
+        MainMixer.SetFloat("MasterAudio", ChangeAudio);
     }
 
     private void BGMAudio(AudioClip Clip)
@@ -53,5 +63,6 @@ public class AudioManager : MonoBehaviour
         FootStepAudio.OnAudioEventRaised -= FootStep;
         FXEventSO.OnAudioEventRaised -= FXAudio;
         TranSpotAudioEvent.OnAudioEventRaised -= BGMAudio;
+        AudioChangeEvent.OnFloatEventRaised -= OnAudioChange;
     }
 }

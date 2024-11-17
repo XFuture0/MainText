@@ -60,6 +60,8 @@ public class MoveCOntroller : MonoBehaviour
     public GravityEventSO BoomSpeed;
     public GravityEventSO BoomHigh;
     public VoidEventSO DeadRestart;
+    public VoidEventSO StopPlayerEvent;
+    public VoidEventSO ContinuePlayerEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -239,6 +241,20 @@ public class MoveCOntroller : MonoBehaviour
         BoomSpeed.OnGravityEventRaised += OnBoomSpeed;
         BoomHigh.OnGravityEventRaised += OnBoomHigh;
         DeadRestart.OnEventRaised += OnDeadRestart;
+        StopPlayerEvent.OnEventRaised += OnStopPlayer;
+        ContinuePlayerEvent.OnEventRaised += OnContinuePlayer;
+    }
+
+    private void OnContinuePlayer()
+    {
+        inputActions.Player.Enable();
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private void OnStopPlayer()
+    {
+        inputActions.Player.Disable();
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private void OnDeadRestart()
@@ -310,5 +326,7 @@ public class MoveCOntroller : MonoBehaviour
         BoomSpeed.OnGravityEventRaised -= OnBoomSpeed;
         BoomHigh.OnGravityEventRaised -= OnBoomHigh;
         DeadRestart.OnEventRaised -= OnDeadRestart;
+        StopPlayerEvent.OnEventRaised -= OnStopPlayer;
+        ContinuePlayerEvent.OnEventRaised = OnContinuePlayer;
     }
 }

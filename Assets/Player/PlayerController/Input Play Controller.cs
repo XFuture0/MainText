@@ -243,6 +243,15 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stop"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb31ab67-64a6-47dd-80eb-017822c42acf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +287,17 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""action"": ""Settings"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64a54ccf-4764-4375-b7bd-7c4db1468295"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -299,6 +319,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_UI_In = m_UI.FindAction("In", throwIfNotFound: true);
         m_UI_Out = m_UI.FindAction("Out", throwIfNotFound: true);
         m_UI_Settings = m_UI.FindAction("Settings", throwIfNotFound: true);
+        m_UI_Stop = m_UI.FindAction("Stop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -465,6 +486,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_In;
     private readonly InputAction m_UI_Out;
     private readonly InputAction m_UI_Settings;
+    private readonly InputAction m_UI_Stop;
     public struct UIActions
     {
         private @InputPlayController m_Wrapper;
@@ -472,6 +494,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         public InputAction @In => m_Wrapper.m_UI_In;
         public InputAction @Out => m_Wrapper.m_UI_Out;
         public InputAction @Settings => m_Wrapper.m_UI_Settings;
+        public InputAction @Stop => m_Wrapper.m_UI_Stop;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -490,6 +513,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Settings.started += instance.OnSettings;
             @Settings.performed += instance.OnSettings;
             @Settings.canceled += instance.OnSettings;
+            @Stop.started += instance.OnStop;
+            @Stop.performed += instance.OnStop;
+            @Stop.canceled += instance.OnStop;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -503,6 +529,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Settings.started -= instance.OnSettings;
             @Settings.performed -= instance.OnSettings;
             @Settings.canceled -= instance.OnSettings;
+            @Stop.started -= instance.OnStop;
+            @Stop.performed -= instance.OnStop;
+            @Stop.canceled -= instance.OnStop;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -536,5 +565,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnIn(InputAction.CallbackContext context);
         void OnOut(InputAction.CallbackContext context);
         void OnSettings(InputAction.CallbackContext context);
+        void OnStop(InputAction.CallbackContext context);
     }
 }
