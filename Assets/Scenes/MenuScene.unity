@@ -956,7 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentscene: {fileID: 11400000, guid: f86ac96238067074b9973187bff06a6a, type: 2}
   ChangeScene: {fileID: 11400000, guid: 968ca93466d08e742ac235cee8549556, type: 2}
-  ChangePosition: {x: -57.43, y: 2.68, z: 0}
+  ChangePosition: {x: -157.47, y: -3.41, z: 0}
   Start: {fileID: 1098744803}
   Setting_State_Open_Event: {fileID: 11400000, guid: e497561eb15a3ba44a22921f7903223d, type: 2}
   Setting_State_Close_Event: {fileID: 11400000, guid: 11fb9aac4ab7c4740aeba7fcba6c8d36, type: 2}

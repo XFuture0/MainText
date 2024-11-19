@@ -28,6 +28,8 @@ public class CaremaChange : MonoBehaviour
     [Header("¹ã²¥")]
     public VoidEventSO ReturnEvent;
     public VoidEventSO X_In_Event;
+    public VoidEventSO Set_State_Open_Event;
+    public VoidEventSO Set_State_Close_Event;
     private void Awake()
     {
         Current_Tranform.name = "Newtree";
@@ -126,6 +128,7 @@ public class CaremaChange : MonoBehaviour
         }
         if (target.name != Current_Tranform.name)
         {
+            Set_State_Open_Event.RaiseEvent();
             isUnLoad = false;
             Current_Tranform = target;
             VirtualCamera.Follow = Current_Tranform;
@@ -141,12 +144,17 @@ public class CaremaChange : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         X_In_Event.RaiseEvent();
         EventSystem.current.SetSelectedGameObject(FirseSelecting);
+        yield return new WaitForSeconds(0.5f);
+        Set_State_Close_Event.RaiseEvent();
     }
     private IEnumerator Transform_Z_Position()
     {
+        Set_State_Open_Event.RaiseEvent();
         yield return new WaitForSeconds(0.5f);
         VirtualCamera.Follow = Current_Tranform;
         VirtualCamera.LookAt = Current_Tranform;
+        yield return new WaitForSeconds(1f);
+        Set_State_Close_Event.RaiseEvent();
     }
     private void OnDisable()
     {
