@@ -5,8 +5,9 @@ using UnityEngine;
 public class CloseDoorController : MonoBehaviour
 {
     public Controller controller;
+    public string DoorName;
     [Header("¹ã²¥")]
-    public VoidEventSO CloseDoor;
+    public StringEventSO OpenDoor;
     private void Awake()
     {
         controller = GetComponent<Controller>();
@@ -15,7 +16,7 @@ public class CloseDoorController : MonoBehaviour
     {
         if (controller.isCloseDoor)
         {
-            CloseDoor?.RaiseEvent();
+            OpenDoor?.StringRaiseEvent(DoorName);
             controller.isCloseDoor = false;
         }
     }
