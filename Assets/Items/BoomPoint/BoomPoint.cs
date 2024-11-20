@@ -14,6 +14,12 @@ public class BoomPoint : MonoBehaviour
         {
             BoomSpeed.GravityEventRaised(BoomSpeeding,Boom_Time);
             isboom = true;
+            StartCoroutine(WaitTime());
         }
+    }
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(5f);
+        isboom = false;
     }
 }

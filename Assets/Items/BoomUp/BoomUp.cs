@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using UnityEngine;
 
 public class BoomUp : MonoBehaviour
@@ -14,6 +15,12 @@ public class BoomUp : MonoBehaviour
         {
             BoomHigh.GravityEventRaised(BoomHighing, Boom_Time);
             isboom = true;
+            StartCoroutine(WaitTime());
         }
+    }
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(5f);
+        isboom = false;
     }
 }

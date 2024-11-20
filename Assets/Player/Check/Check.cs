@@ -7,11 +7,24 @@ public class Check : MonoBehaviour
 {
     [Header("检查点")]
     public bool IsGround;
+    public bool IsHitSth;
     [Header("地面Check")]
     public Vector2 Left_Up_position;
     public Vector2 Right_Down_position;
     private float GroundR;
     public LayerMask ground;
+    private float WaitTime;
+    private void Awake()
+    {
+        WaitTime = 0;
+    }
+    private void Update()
+    {
+        if (WaitTime <= 0)
+        {
+            WaitTime -= Time.deltaTime;
+        }
+    }
     private void FixedUpdate()
     {
         Checking();
@@ -26,4 +39,19 @@ public class Check : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + Left_Up_position, 0.05f);
         Gizmos.DrawWireSphere((Vector2)transform.position + Right_Down_position, 0.05f);
     }
- }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag != "Item" && WaitTime <= 0)
+        {
+            IsHitSth = true;
+        }
+        if(other.tag == "Item")
+        {
+            WaitTime = 0.2f;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IsHitSth = false;
+    }
+}

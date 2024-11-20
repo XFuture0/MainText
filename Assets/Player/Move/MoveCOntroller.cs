@@ -18,7 +18,7 @@ public class MoveCOntroller : MonoBehaviour
     private float PlayerFace;
     private float Current_Boom_time;
     private bool isBoomFront;
-    private bool isBoomHigh;
+    public bool isBoomHigh;
     private float BoomHighPower;
     [Header("»ÀŒÔ Ù–‘")]
     public float PlayerSpeed;
@@ -119,6 +119,11 @@ public class MoveCOntroller : MonoBehaviour
         }
         if (isBoomFront)
         {
+            if (check.IsHitSth)
+            {
+                isBoomFront = false;
+                rb.gravityScale = MainGravity;
+            }
             rb.velocity = new Vector2(-PlayerSpeed * Time.deltaTime, 0);
             if (isPressW)
             {
@@ -131,6 +136,11 @@ public class MoveCOntroller : MonoBehaviour
         }
         if (isBoomHigh)
         {
+            if (check.IsHitSth)
+            {
+                isBoomHigh = false;
+                rb.gravityScale = MainGravity;
+            }
             rb.velocity = new Vector2(0, BoomHighPower);
         }
     }
