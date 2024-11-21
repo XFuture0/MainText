@@ -5,11 +5,19 @@ using UnityEngine;
 public class DeadBlock : MonoBehaviour
 {
     public VoidEventSO DeadEvent;
+    public VoidEventSO NoDeadEvent;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            DeadEvent?.RaiseEvent();
+            if (!(gameObject.tag == "CanDestory"))
+            {
+                DeadEvent?.RaiseEvent();
+            }
+            if(gameObject.tag == "CanDestory")
+            {
+                NoDeadEvent?.RaiseEvent();
+            }
         }
     }
 }

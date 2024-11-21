@@ -6,3 +6,7 @@ public enum SceneType
 {
     UI,Game
 }
+public enum StateType
+{
+    Hide,Hit
+}

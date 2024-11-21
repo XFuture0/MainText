@@ -2533,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 851737555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -277.591, y: -32.078, z: -10}
+  m_LocalPosition: {x: -103.17, y: 43.65, z: -10}
   m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2626,6 +2626,7 @@ MonoBehaviour:
   Current_Tranform: {fileID: 1053912345}
   Current_Tranform_temp: {fileID: 1576136412}
   Player: {fileID: 1191537251}
+  own: {fileID: 851737559}
   SizeChange_X: 0.9
   SizeChange_Z: 1.1
   isPressX: 0
@@ -2642,6 +2643,7 @@ MonoBehaviour:
   X_In_Event: {fileID: 11400000, guid: 3e803b055cda96c43bd08cc49570bf0d, type: 2}
   Set_State_Open_Event: {fileID: 11400000, guid: e497561eb15a3ba44a22921f7903223d, type: 2}
   Set_State_Close_Event: {fileID: 11400000, guid: 11fb9aac4ab7c4740aeba7fcba6c8d36, type: 2}
+  PlayerPositionEvent: {fileID: 11400000, guid: c0b5e228002cf4e4e9065ce846017daa, type: 2}
 --- !u!1 &871679699 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5531689527537527098, guid: aebb67544e28d6444bb29e3994574413, type: 3}
@@ -5269,7 +5271,7 @@ Transform:
   m_GameObject: {fileID: 1951979858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -277.591, y: -32.078, z: -10}
+  m_LocalPosition: {x: -103.17, y: 43.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5921,11 +5923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -277.591
+      value: -103.17
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -32.078
+      value: 43.65
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5968,6 +5970,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1191537251}
+    - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: BoomHigh
       value: 
       objectReference: {fileID: 11400000, guid: 6f2b7cf2270d04d4b818f103284594ad, type: 2}
@@ -6007,6 +6013,10 @@ PrefabInstance:
       propertyPath: FadeinEvent
       value: 
       objectReference: {fileID: 11400000, guid: 5ac8ede0882c0dc428ea5e4e4bdb25f5, type: 2}
+    - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: NoDeadEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e621e0cae7a1364e8df829153acfc9f, type: 2}
     - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: RestartEvent
       value: 
@@ -6051,6 +6061,10 @@ PrefabInstance:
       propertyPath: IncreaseEnergyEvent
       value: 
       objectReference: {fileID: 11400000, guid: 29506d9e58cc2ba479a4748c3a85479a, type: 2}
+    - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: PlayerPositionEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c0b5e228002cf4e4e9065ce846017daa, type: 2}
     - target: {fileID: 8983659772401971505, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_SortingOrder
       value: -1

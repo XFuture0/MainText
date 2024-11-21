@@ -3,7 +3,9 @@ guid: 164add1dfdd29b749a7790d6f33fa7f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DeadEvent: {fileID: 11400000, guid: a814a5c77b75b014baaedc02dd885c9c, type: 2}
+  - NoDeadEvent: {fileID: 11400000, guid: 5e621e0cae7a1364e8df829153acfc9f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

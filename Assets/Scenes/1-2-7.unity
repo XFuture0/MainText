@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeadEvent: {fileID: 11400000, guid: a814a5c77b75b014baaedc02dd885c9c, type: 2}
+  NoDeadEvent: {fileID: 0}
 --- !u!66 &405475271
 CompositeCollider2D:
   m_ObjectHideFlags: 0

@@ -13,17 +13,14 @@ public class Check : MonoBehaviour
     public Vector2 Right_Down_position;
     private float GroundR;
     public LayerMask ground;
-    private float WaitTime;
+    public float WaitTime;
     private void Awake()
     {
         WaitTime = 0;
     }
     private void Update()
     {
-        if (WaitTime <= 0)
-        {
-            WaitTime -= Time.deltaTime;
-        }
+        WaitTime -= Time.deltaTime;
     }
     private void FixedUpdate()
     {

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
@@ -41,8 +42,8 @@ public class MoveCOntroller : MonoBehaviour
    [HideInInspector] public float FullDashPower;
     private bool isPressW;
     private bool isPressS;
-    private bool isPressA;
-    private bool isPressD;
+    public bool isPressA;
+    public bool isPressD;
     [Header("¹ã²¥")]
     public VoidEventSO CaremaImpulseEvent;
     public FlaotEventSO PowerChangeEvent;
@@ -56,6 +57,7 @@ public class MoveCOntroller : MonoBehaviour
     public bool isDead;
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO DeadEvent;
+    public VoidEventSO NoDeadEvent;
     public VoidEventSO IncreaseEnergyEvent;
     public GravityEventSO BoomSpeed;
     public GravityEventSO BoomHigh;
@@ -75,6 +77,8 @@ public class MoveCOntroller : MonoBehaviour
         inputActions.Player.UP.canceled += CancelUP;
         inputActions.Player.Down.performed += OnDown;
         inputActions.Player.Down.canceled += CancelDown;
+        inputActions.Player.Move.performed += OnAD;
+        inputActions.Player.Move.canceled += CancelAD;
         inputActions.Enable();
         Jump_time = 0;
         DashTimeCount = 2 * Dash_count;
@@ -95,12 +99,15 @@ public class MoveCOntroller : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (!isDash && !isBoomFront && !isBoomHigh && !isDead)
+        if (!isDash && !isDead)
         {
-            Move();
             if (DashTimeCount < 2 * Dash_count)
             {
                 DashTimeCount += Time.deltaTime;
+            }
+            if (!isBoomFront && !isBoomHigh)
+            {
+                Move();
             }
         }
         if (isDash)
@@ -142,6 +149,14 @@ public class MoveCOntroller : MonoBehaviour
                 rb.gravityScale = MainGravity;
             }
             rb.velocity = new Vector2(0, BoomHighPower);
+            if (isPressA)
+            {
+                rb.velocity = new Vector2(-5, rb.velocity.y);
+            }
+            if (isPressD)
+            {
+                rb.velocity = new Vector2(5, rb.velocity.y);
+            }
         }
     }
 
@@ -199,6 +214,23 @@ public class MoveCOntroller : MonoBehaviour
     {
         isPressW = false;
     }
+    private void OnAD(InputAction.CallbackContext context)
+    {
+      var AD = inputActions.Player.Move.ReadValue<Vector2>();
+        if (AD.x < 0)
+        {
+            isPressA = true;
+        }
+        if (AD.x > 0)
+        {
+            isPressD = true;
+        }
+    }
+    private void CancelAD(InputAction.CallbackContext context)
+    {
+        isPressA = false;
+        isPressD = false;
+    }
     private void Dash(InputAction.CallbackContext context)
     {
         if (DashTimeCount >= 2)
@@ -247,6 +279,7 @@ public class MoveCOntroller : MonoBehaviour
     private void OnEnable()
     {
         DeadEvent.OnEventRaised += Dead;
+        NoDeadEvent.OnEventRaised += NoDead;
         IncreaseEnergyEvent.OnEventRaised += OnIncreaseEnergy;
         BoomSpeed.OnGravityEventRaised += OnBoomSpeed;
         BoomHigh.OnGravityEventRaised += OnBoomHigh;
@@ -254,7 +287,6 @@ public class MoveCOntroller : MonoBehaviour
         StopPlayerEvent.OnEventRaised += OnStopPlayer;
         ContinuePlayerEvent.OnEventRaised += OnContinuePlayer;
     }
-
     private void OnContinuePlayer()
     {
         inputActions.Player.Enable();
@@ -319,6 +351,21 @@ public class MoveCOntroller : MonoBehaviour
             StartCoroutine(Restart());
         }
     }
+    private void NoDead()
+    {
+        if (!isDash)
+        {
+            if (!isDead)
+            {
+                anim.SetTrigger("Dead");
+                isDead = true;
+                inputActions.Disable();
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                FadeinEvent.RaiseEvent();
+                StartCoroutine(Restart());
+            }
+        }
+    }
     private IEnumerator Restart()
     {
         yield return new WaitForSeconds(2f);
@@ -332,6 +379,7 @@ public class MoveCOntroller : MonoBehaviour
     private void OnDisable()
     {
         DeadEvent.OnEventRaised -= Dead;
+        NoDeadEvent.OnEventRaised -= NoDead;
         IncreaseEnergyEvent.OnEventRaised -= OnIncreaseEnergy;
         BoomSpeed.OnGravityEventRaised -= OnBoomSpeed;
         BoomHigh.OnGravityEventRaised -= OnBoomHigh;
