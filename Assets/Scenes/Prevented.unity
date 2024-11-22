@@ -2503,8 +2503,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1191537251}
-  m_Follow: {fileID: 1191537251}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5.42
@@ -2533,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 851737555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.17, y: 43.65, z: -10}
+  m_LocalPosition: {x: -134.81, y: -6.4, z: -10}
   m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5271,7 +5271,7 @@ Transform:
   m_GameObject: {fileID: 1951979858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.17, y: 43.65, z: -10}
+  m_LocalPosition: {x: -134.81, y: -6.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5911,7 +5911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531689527537527098, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5531689527537527098, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_TagString
@@ -5923,11 +5923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.17
+      value: -65.3
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 43.65
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.z

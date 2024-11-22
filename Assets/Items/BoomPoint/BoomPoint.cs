@@ -8,7 +8,7 @@ public class BoomPoint : MonoBehaviour
     public float BoomSpeeding;
     public float Boom_Time;
     private bool isboom;
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!isboom)
         {
