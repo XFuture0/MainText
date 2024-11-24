@@ -15,6 +15,7 @@ public class MoveCOntroller : MonoBehaviour
     private Check check;
     public Animator anim;
     public Transform own;
+    public GameObject Dish;
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
@@ -83,6 +84,7 @@ public class MoveCOntroller : MonoBehaviour
         inputActions.Player.Down.canceled += CancelDown;
         inputActions.Player.Move.performed += OnAD;
         inputActions.Player.Move.canceled += CancelAD;
+        inputActions.Player.Throw.started += ThrowDish;
         inputActions.Enable();
         Jump_time = 0;
         DashTimeCount = 2 * Dash_count;
@@ -279,6 +281,11 @@ public class MoveCOntroller : MonoBehaviour
             CanDestory_Item = other.GetComponent<IDestroyed>();
             CanDestory_Item.DestoryAction();
         }
+    }
+    private void ThrowDish(InputAction.CallbackContext context)
+    {
+        var DishPosition = new Vector3(transform.position.x, transform.position.y + (float)0.55, transform.position.z);
+        Instantiate(Dish,DishPosition,quaternion.identity);
     }
     private void OnEnable()
     {

@@ -98,6 +98,15 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca5cf73c-0bff-4a35-a334-d3bfa1e274c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,7 +179,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7a10843f-e29c-47ac-8ebf-ac41d67a565f"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -208,6 +217,17 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2552969a-04bd-4fc5-b5e4-f064de3837ea"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -314,6 +334,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_Player_RightChange = m_Player.FindAction("RightChange", throwIfNotFound: true);
         m_Player_UP = m_Player.FindAction("UP", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
+        m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_In = m_UI.FindAction("In", throwIfNotFound: true);
@@ -389,6 +410,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightChange;
     private readonly InputAction m_Player_UP;
     private readonly InputAction m_Player_Down;
+    private readonly InputAction m_Player_Throw;
     public struct PlayerActions
     {
         private @InputPlayController m_Wrapper;
@@ -401,6 +423,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         public InputAction @RightChange => m_Wrapper.m_Player_RightChange;
         public InputAction @UP => m_Wrapper.m_Player_UP;
         public InputAction @Down => m_Wrapper.m_Player_Down;
+        public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -434,6 +457,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Down.started += instance.OnDown;
             @Down.performed += instance.OnDown;
             @Down.canceled += instance.OnDown;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -462,6 +488,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Down.started -= instance.OnDown;
             @Down.performed -= instance.OnDown;
             @Down.canceled -= instance.OnDown;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -559,6 +588,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnRightChange(InputAction.CallbackContext context);
         void OnUP(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
