@@ -10,11 +10,14 @@ public class BoomPoint : MonoBehaviour
     private bool isboom;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isboom)
+        if (other.tag == "Player")
         {
-            BoomSpeed.GravityEventRaised(BoomSpeeding,Boom_Time);
-            isboom = true;
-            StartCoroutine(WaitTime());
+            if (!isboom)
+            {
+                BoomSpeed.GravityEventRaised(BoomSpeeding, Boom_Time);
+                isboom = true;
+                StartCoroutine(WaitTime());
+            }
         }
     }
     private IEnumerator WaitTime()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeadBlock : MonoBehaviour
 {
+    [Header("¹ã²¥")]
     public VoidEventSO DeadEvent;
     public VoidEventSO NoDeadEvent;
     public void OnTriggerEnter2D(Collider2D other)

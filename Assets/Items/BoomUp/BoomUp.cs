@@ -11,11 +11,14 @@ public class BoomUp : MonoBehaviour
     private bool isboom;
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!isboom)
+        if (other.tag == "Player")
         {
-            BoomHigh.GravityEventRaised(BoomHighing, Boom_Time);
-            isboom = true;
-            StartCoroutine(WaitTime());
+            if (!isboom)
+            {
+                BoomHigh.GravityEventRaised(BoomHighing, Boom_Time);
+                isboom = true;
+                StartCoroutine(WaitTime());
+            }
         }
     }
     private IEnumerator WaitTime()

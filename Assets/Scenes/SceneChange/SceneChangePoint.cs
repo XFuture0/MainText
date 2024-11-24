@@ -11,12 +11,15 @@ public class SceneChangePoint : MonoBehaviour
     private bool isChange;
     [Header("¹ã²¥")]
     public SceneChangeEventSO ChangeEvent;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isChange)
+        if (other.tag == "Player")
         {
-            isChange = true;
-            ChangeEvent.RaiseSceneChangeEvent(CurrentScene, SceneToGo, PositionToGo);
+            if (!isChange)
+            {
+                isChange = true;
+                ChangeEvent.RaiseSceneChangeEvent(CurrentScene, SceneToGo, PositionToGo);
+            }
         }
     }
 }

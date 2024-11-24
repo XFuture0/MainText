@@ -8,5 +8,5 @@ public enum SceneType
 }
 public enum StateType
 {
-    Hide,Hit
+    Hide,Rush,Walk,Wait
 }

@@ -2507,7 +2507,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1191537251}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 2.54
+    OrthographicSize: 5.42
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2533,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 851737555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.35, y: 4.34, z: -10}
+  m_LocalPosition: {x: -281.5, y: -2.66, z: -10}
   m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5246,7 +5246,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.54
+  orthographic size: 5.42
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5271,7 +5271,7 @@ Transform:
   m_GameObject: {fileID: 1951979858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.35, y: 4.34, z: -10}
+  m_LocalPosition: {x: -281.5, y: -2.66, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5862,12 +5862,20 @@ PrefabInstance:
       value: 0.83605194
       objectReference: {fileID: 0}
     - target: {fileID: 2626288769885513173, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626288769885513173, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_Offset.x
       value: -0.031973347
       objectReference: {fileID: 0}
     - target: {fileID: 2626288769885513173, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_Offset.y
       value: -0.08197403
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626288769885513173, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3423979626115165843, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5911,7 +5919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531689527537527098, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5531689527537527098, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_TagString
@@ -5922,12 +5930,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.35
+      value: -281.5
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.34
+      value: -2.66
       objectReference: {fileID: 0}
     - target: {fileID: 5673691836761404177, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6022,6 +6034,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 99db09ef2d6132841982ac5beab56449, type: 2}
     - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: eyeJumpEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 7075ea3144c41a841b3086f050645a4b, type: 2}
+    - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: DashImpulsing
       value: 
       objectReference: {fileID: 1182130208}
@@ -6037,6 +6053,10 @@ PrefabInstance:
       propertyPath: JumpAudioEvent
       value: 
       objectReference: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
+    - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
+      propertyPath: FindPlayerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 10e81f00aeaec8e429ddde5d84f37133, type: 2}
     - target: {fileID: 8495494472366461071, guid: aebb67544e28d6444bb29e3994574413, type: 3}
       propertyPath: StopPlayerEvent
       value: 

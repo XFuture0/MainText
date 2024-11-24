@@ -14,6 +14,7 @@ public class MoveCOntroller : MonoBehaviour
     private Rigidbody2D rb;
     private Check check;
     public Animator anim;
+    public Transform own;
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
@@ -53,6 +54,7 @@ public class MoveCOntroller : MonoBehaviour
     public AudioClip JumpClip;
     public VoidEventSO RestartEvent;
     public VoidEventSO FadeinEvent;
+    public TransformEventSO PlayerPositionEvent;
     [Header("人物死亡")]
     public bool isDead;
     [Header("事件监听")]
@@ -64,6 +66,8 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO DeadRestart;
     public VoidEventSO StopPlayerEvent;
     public VoidEventSO ContinuePlayerEvent;
+    public VoidEventSO FindPlayerEvent;
+    public VoidEventSO eyeJumpEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -286,6 +290,19 @@ public class MoveCOntroller : MonoBehaviour
         DeadRestart.OnEventRaised += OnDeadRestart;
         StopPlayerEvent.OnEventRaised += OnStopPlayer;
         ContinuePlayerEvent.OnEventRaised += OnContinuePlayer;
+        FindPlayerEvent.OnEventRaised += OnFindPlayer;
+        eyeJumpEvent.OnEventRaised += PlayerJump_eye;
+    }
+
+    private void PlayerJump_eye()
+    {
+        rb.velocity = Vector2.zero;
+        rb.AddForce(transform.up * 15,ForceMode2D.Impulse);
+    }
+
+    private void OnFindPlayer()
+    {
+        PlayerPositionEvent.TransformRaiseEvent(own);
     }
     private void OnContinuePlayer()
     {
@@ -386,5 +403,7 @@ public class MoveCOntroller : MonoBehaviour
         DeadRestart.OnEventRaised -= OnDeadRestart;
         StopPlayerEvent.OnEventRaised -= OnStopPlayer;
         ContinuePlayerEvent.OnEventRaised = OnContinuePlayer;
+        FindPlayerEvent.OnEventRaised -= OnFindPlayer;
+        eyeJumpEvent.OnEventRaised -= PlayerJump_eye;
     }
 }
