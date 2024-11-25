@@ -16,6 +16,8 @@ public class MoveCOntroller : MonoBehaviour
     public Animator anim;
     public Transform own;
     public GameObject Dish;
+    public GameObject Attack3;
+    public GameObject PlayerBloom;
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
@@ -26,6 +28,8 @@ public class MoveCOntroller : MonoBehaviour
     [Header("人物属性")]
     public float PlayerSpeed;
     private float CurrentPlayerSpeed;
+    public int Combo;
+    private bool isAttack;
     [Header("人物跳跃")]
     public float StartJump;
     private float Jump_time;
@@ -44,11 +48,13 @@ public class MoveCOntroller : MonoBehaviour
    [HideInInspector] public float FullDashPower;
     private bool isPressW;
     private bool isPressS;
-    public bool isPressA;
-    public bool isPressD;
+    private bool isPressA;
+    private bool isPressD;
+    private bool canPressQ;
     [Header("广播")]
     public VoidEventSO CaremaImpulseEvent;
     public FlaotEventSO PowerChangeEvent;
+    public FlaotEventSO DishCastEvent;
     public AudioEventSO DashAudioEvent;
     public AudioEventSO JumpAudioEvent;
     public AudioClip DashClip;
@@ -69,6 +75,7 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO ContinuePlayerEvent;
     public VoidEventSO FindPlayerEvent;
     public VoidEventSO eyeJumpEvent;
+    public VoidEventSO CanPressQEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -85,12 +92,15 @@ public class MoveCOntroller : MonoBehaviour
         inputActions.Player.Move.performed += OnAD;
         inputActions.Player.Move.canceled += CancelAD;
         inputActions.Player.Throw.started += ThrowDish;
+        inputActions.Player.Attack.started += PlayerAttack;
         inputActions.Enable();
         Jump_time = 0;
         DashTimeCount = 2 * Dash_count;
         FullDashPower = 2 * Dash_count;
         MainGravity = rb.gravityScale;
         CurrentPlayerSpeed = PlayerSpeed;
+        canPressQ = true;
+        isAttack = true;
     }
     private void Update()
     {
@@ -274,6 +284,52 @@ public class MoveCOntroller : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 1);
         isDash = false;
     }
+    private void PlayerAttack(InputAction.CallbackContext context)
+    {
+        if (isAttack)
+        {
+            isAttack = false;
+            Combo++;
+            anim.SetInteger("combo", Combo);
+            StartCoroutine(AttackWaitTime());
+        }
+    }
+    private IEnumerator AttackWaitTime()
+    {
+        if(Combo == 3)
+        {
+            PlayerBloom.SetActive(true);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            inputActions.Player.Disable();
+            yield return new WaitForSeconds(2.7f);
+        }
+        yield return new WaitForSeconds(0.5f);
+        isAttack = true;
+        anim.SetInteger("combo",0);
+        if (Combo == 3)
+        {
+            PlayerBloom.SetActive(false);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            inputActions.Player.Enable();
+            Combo = 0;
+        }
+    }
+    public void OnAttack3()
+    {
+        var Attack3Position = new Vector3(0, 0, 0);
+        if (transform.localScale.x < 0)
+        {
+            Attack3Position = new Vector3(transform.position.x + (float)-1, transform.position.y, transform.position.z);
+            var Quat = new quaternion(0,0,1,0);
+            Instantiate(Attack3, Attack3Position, Quat);
+        }
+        if (transform.localScale.x > 0)
+        {
+            Attack3Position = new Vector3(transform.position.x + (float)1, transform.position.y, transform.position.z);
+            var Quat = new quaternion(0, 0,0,1);
+            Instantiate(Attack3, Attack3Position, Quat);
+        }
+    }
     public void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "CanDestory" && isDash)
@@ -284,8 +340,21 @@ public class MoveCOntroller : MonoBehaviour
     }
     private void ThrowDish(InputAction.CallbackContext context)
     {
-        var DishPosition = new Vector3(transform.position.x, transform.position.y + (float)0.55, transform.position.z);
-        Instantiate(Dish,DishPosition,quaternion.identity);
+        if (canPressQ)
+        {
+            var DishPosition = new Vector3(0, 0, 0);
+            if (transform.localScale.x < 0)
+            {
+                 DishPosition = new Vector3(transform.position.x + (float)-0.55, transform.position.y, transform.position.z);
+            }
+            if (transform.localScale.x > 0)
+            {
+                DishPosition = new Vector3(transform.position.x + (float)0.55, transform.position.y, transform.position.z);
+            }
+            Instantiate(Dish, DishPosition, quaternion.identity);
+            DishCastEvent.FloatRaiseEvent(transform.localScale.x);
+            canPressQ = false;
+        }
     }
     private void OnEnable()
     {
@@ -299,6 +368,11 @@ public class MoveCOntroller : MonoBehaviour
         ContinuePlayerEvent.OnEventRaised += OnContinuePlayer;
         FindPlayerEvent.OnEventRaised += OnFindPlayer;
         eyeJumpEvent.OnEventRaised += PlayerJump_eye;
+        CanPressQEvent.OnEventRaised += OnCanPressQ;
+    }
+    private void OnCanPressQ()
+    {
+        canPressQ = true;
     }
 
     private void PlayerJump_eye()
@@ -412,5 +486,6 @@ public class MoveCOntroller : MonoBehaviour
         ContinuePlayerEvent.OnEventRaised = OnContinuePlayer;
         FindPlayerEvent.OnEventRaised -= OnFindPlayer;
         eyeJumpEvent.OnEventRaised -= PlayerJump_eye;
+        CanPressQEvent.OnEventRaised -= OnCanPressQ;
     }
 }

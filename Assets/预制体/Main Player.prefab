@@ -613,7 +613,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  own: {fileID: 0}
+  Dish: {fileID: 0}
+  isBoomHigh: 0
   PlayerSpeed: 300
+  Combo: 0
   StartJump: 0
   Target_Jump_Time: 0
   OnJump: 0
@@ -625,18 +629,26 @@ MonoBehaviour:
   FullDashPower: 0
   CaremaImpulseEvent: {fileID: 0}
   PowerChangeEvent: {fileID: 11400000, guid: a54559d5e988cc141a6f68be28a57cad, type: 2}
+  DishCastEvent: {fileID: 0}
   DashAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   JumpAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   DashClip: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   JumpClip: {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
   RestartEvent: {fileID: 0}
   FadeinEvent: {fileID: 0}
+  PlayerPositionEvent: {fileID: 0}
   isDead: 0
   DeadEvent: {fileID: 0}
+  NoDeadEvent: {fileID: 0}
   IncreaseEnergyEvent: {fileID: 0}
   BoomSpeed: {fileID: 0}
   BoomHigh: {fileID: 0}
   DeadRestart: {fileID: 0}
+  StopPlayerEvent: {fileID: 0}
+  ContinuePlayerEvent: {fileID: 0}
+  FindPlayerEvent: {fileID: 0}
+  eyeJumpEvent: {fileID: 0}
+  CanPressQEvent: {fileID: 0}
 --- !u!114 &2263843393028257447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,11 +662,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsGround: 0
+  IsHitSth: 0
   Left_Up_position: {x: 0, y: 0}
   Right_Down_position: {x: 0, y: 0}
   ground:
     serializedVersion: 2
     m_Bits: 64
+  WaitTime: 0
 --- !u!114 &1281939007223140578
 MonoBehaviour:
   m_ObjectHideFlags: 0
