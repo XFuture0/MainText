@@ -9,6 +9,7 @@ TagManager:
   - Bound
   - UIManager
   - Item
+  - PlayerHit
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Player
   - Enemy
   - Hit
-  - 
-  - 
+  - StayEnemy
+  - PlayerHit
   - 
   - 
   - 

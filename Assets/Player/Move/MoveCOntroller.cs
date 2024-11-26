@@ -62,6 +62,7 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO RestartEvent;
     public VoidEventSO FadeinEvent;
     public TransformEventSO PlayerPositionEvent;
+    public VoidEventSO TimeStopEnemyEvent;
     [Header("人物死亡")]
     public bool isDead;
     [Header("事件监听")]
@@ -298,6 +299,7 @@ public class MoveCOntroller : MonoBehaviour
     {
         if(Combo == 3)
         {
+            TimeStopEnemyEvent.RaiseEvent();
             PlayerBloom.SetActive(true);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             inputActions.Player.Disable();

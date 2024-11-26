@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2546651533767083330}
   - component: {fileID: 6199002218983414603}
   - component: {fileID: 3973643051469896446}
-  - component: {fileID: 4564940369579241143}
   - component: {fileID: 7178070500439584657}
   - component: {fileID: 4586927377222677169}
   m_Layer: 8
@@ -162,63 +161,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8723221, y: 1.2152827}
   m_EdgeRadius: 0
---- !u!60 &4564940369579241143
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112536796824044408}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.0625, y: 2.875}
-    newSize: {x: 8.0625, y: 2.875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5232849, y: 0.3715527}
-      - {x: -0.77667236, y: -0.02842462}
-      - {x: -1.1100845, y: -0.44895685}
-      - {x: -1.09375, y: -1.3125}
-      - {x: -0.96875, y: -1.4375}
-      - {x: 1.21875, y: -1.4375}
-      - {x: 1.21875, y: -0.9375}
-      - {x: 1.15625, y: -0.625}
-      - {x: 0.84375, y: 0.1875}
-      - {x: 0.13339233, y: 0.041798472}
-      - {x: 0.03829956, y: 0.25153148}
-      - {x: -0.34832764, y: 0.28972602}
-  m_UseDelaunayMesh: 0
 --- !u!95 &7178070500439584657
 Animator:
   serializedVersion: 5
@@ -254,7 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   rb: {fileID: 0}
-  DeadEvent: {fileID: 11400000, guid: a814a5c77b75b014baaedc02dd885c9c, type: 2}
   FindPlayer: {fileID: 11400000, guid: 10e81f00aeaec8e429ddde5d84f37133, type: 2}
   BoxCastPosition: {x: -2.24, y: -0.61}
   CheckSize: {x: 1, y: 5}
@@ -263,14 +204,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   findPlayer: 0
-  EnemySpeed: 250
-  isLeft: 0
-  isRight: 0
-  Left: {x: -1.01, y: -0.77}
-  Right: {x: 1.11, y: -0.8}
-  isGround:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &8063594024443009949
 GameObject:
   m_ObjectHideFlags: 0
