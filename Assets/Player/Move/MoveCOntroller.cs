@@ -119,12 +119,12 @@ public class MoveCOntroller : MonoBehaviour
         if (!isSpeedRound)
         {
             isSpeedRound = true;
-            if (rb.velocity.x > 17)
+            if (rb.velocity.x > 12)
             {
                 var SpeedRound_Start = new Vector3(transform.position.x - (float)0.5, transform.position.y, transform.position.z);
                 Instantiate(SpeedRound,SpeedRound_Start,quaternion.identity);
             }
-            if (rb.velocity.x < -17)
+            if (rb.velocity.x < -12)
             {
                 var SpeedRound_Start = new Vector3(transform.position.x + (float)0.5, transform.position.y, transform.position.z);
                 Instantiate(SpeedRound, SpeedRound_Start, quaternion.identity);

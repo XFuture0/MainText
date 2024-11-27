@@ -17165,7 +17165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: Boom_Time
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: BoomSpeeding
@@ -17359,7 +17359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: Boom_Time
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: BoomSpeeding
@@ -21323,7 +21323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: Boom_Time
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: BoomSpeeding
@@ -21861,7 +21861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: Boom_Time
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: BoomSpeeding
@@ -23073,7 +23073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: Boom_Time
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2746104098262501322, guid: 7ad2d3a9e5520144996650ab15f35b98, type: 3}
       propertyPath: BoomSpeeding
