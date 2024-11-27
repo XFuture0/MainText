@@ -257,3 +257,7 @@ MonoBehaviour:
   OpenSprite: {fileID: -297033882, guid: 37572ad41acf84941af0a354206da430, type: 3}
   CloseSprite: {fileID: 482971145, guid: 37572ad41acf84941af0a354206da430, type: 3}
   Light: {fileID: 1633501909498340479}
+  isTranSpot: 0
+  OpenDoorEvent: {fileID: 11400000, guid: 0a85b3ed1a6b6894c87ec1e269d603cc, type: 2}
+  Clip: {fileID: 8300000, guid: 2f600d94602564a99ad4dad55a4a317d, type: 3}
+  isCloseDoor: 0

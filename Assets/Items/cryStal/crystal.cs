@@ -10,12 +10,15 @@ public class crystal : MonoBehaviour
     public Collider2D closeCollider;
     [Header("¹ã²¥")]
     public VoidEventSO IncreaseEnergyEvent;
+    public AudioEventSO CrystalAudioEvent;
+    public AudioClip Clip;
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             ChangeSprite.sprite = CloseSprite;
             closeCollider.enabled = false;
+            CrystalAudioEvent.AudioRaiseEvent(Clip);
             IncreaseEnergyEvent.RaiseEvent();
             StartCoroutine(ReStart());
         }

@@ -11,6 +11,9 @@ public class Controller : MonoBehaviour, Iinteractive
     public Sprite CloseSprite;
     public GameObject Light;
     public bool isTranSpot;
+    [Header("¹ã²¥")]
+    public AudioEventSO OpenDoorEvent;
+    public AudioClip Clip;
     [HideInInspector]public bool isCloseDoor;
     private void Awake()
     {
@@ -23,6 +26,7 @@ public class Controller : MonoBehaviour, Iinteractive
         spriterenderer.sprite = CloseSprite;
         gameObject.tag = ("Untagged");
         Light.SetActive(true);
+        OpenDoorEvent.AudioRaiseEvent(Clip);
         CLoseDoor();
         if (isTranSpot)
         {

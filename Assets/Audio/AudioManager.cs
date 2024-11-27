@@ -10,12 +10,17 @@ public class AudioManager : MonoBehaviour
     public AudioEventSO FootStepAudio;
     public AudioEventSO FXEventSO;
     public AudioEventSO TranSpotAudioEvent;
+    public AudioEventSO BGMEvent;
+    public AudioEventSO BGMFEvent;
     public FlaotEventSO AudioChangeEvent;
+    public AudioEventSO ItemAudioEvent;
     [Header("音乐管理器")]
     public AudioSource SavePointsourse;
     public AudioSource FootStepsourse;
     public AudioSource FXsourse;
     public AudioSource BGMsourse;
+    public AudioSource BGMFsourse;
+    public AudioSource Itemsourse;
     [Header("音量调节器")]
     public AudioMixer MainMixer;
     private void OnEnable()
@@ -25,6 +30,26 @@ public class AudioManager : MonoBehaviour
         FXEventSO.OnAudioEventRaised += FXAudio;
         TranSpotAudioEvent.OnAudioEventRaised += BGMAudio;
         AudioChangeEvent.OnFloatEventRaised += OnAudioChange;
+        BGMEvent.OnAudioEventRaised += OnBGMAudio;
+        BGMFEvent.OnAudioEventRaised += OnBGMFAudio;
+        ItemAudioEvent.OnAudioEventRaised += OnItemAudio;
+    }
+
+    private void OnItemAudio(AudioClip Clip)
+    {
+        Itemsourse.clip = Clip;
+        Itemsourse.Play();
+    }
+    private void OnBGMFAudio(AudioClip Clip)
+    {
+        BGMFsourse.clip = Clip;
+        BGMFsourse.Play();
+    }
+
+    private void OnBGMAudio(AudioClip Clip)
+    {
+        BGMsourse.clip = Clip;
+        BGMsourse.Play();
     }
 
     private void OnAudioChange(float ChangeAudio)
@@ -64,5 +89,8 @@ public class AudioManager : MonoBehaviour
         FXEventSO.OnAudioEventRaised -= FXAudio;
         TranSpotAudioEvent.OnAudioEventRaised -= BGMAudio;
         AudioChangeEvent.OnFloatEventRaised -= OnAudioChange;
+        BGMEvent.OnAudioEventRaised -= OnBGMAudio;
+        BGMFEvent.OnAudioEventRaised -= OnBGMFAudio;
+        ItemAudioEvent.OnAudioEventRaised -= OnItemAudio;
     }
 }

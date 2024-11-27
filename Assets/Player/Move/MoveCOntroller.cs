@@ -15,9 +15,12 @@ public class MoveCOntroller : MonoBehaviour
     private Check check;
     public Animator anim;
     public Transform own;
+    [Header("¸½ÊôÎï")]
     public GameObject Dish;
     public GameObject Attack3;
     public GameObject PlayerBloom;
+    public GameObject UpBall;
+    public GameObject SpeedRound;
     [HideInInspector] public IDestroyed CanDestory_Item;
     private Vector2 MoveMent;
     private float PlayerFace;
@@ -30,6 +33,7 @@ public class MoveCOntroller : MonoBehaviour
     private float CurrentPlayerSpeed;
     public int Combo;
     private bool isAttack;
+    private bool isSpeedRound;
     [Header("ÈËÎïÌøÔ¾")]
     public float StartJump;
     private float Jump_time;
@@ -112,10 +116,24 @@ public class MoveCOntroller : MonoBehaviour
             DashTimeCount = 2 * Dash_count;
         }
         anim.SetFloat("PlaySpeed", math.abs(rb.velocity.x));
+        if (!isSpeedRound)
+        {
+            isSpeedRound = true;
+            if (rb.velocity.x > 17)
+            {
+                var SpeedRound_Start = new Vector3(transform.position.x - (float)0.5, transform.position.y, transform.position.z);
+                Instantiate(SpeedRound,SpeedRound_Start,quaternion.identity);
+            }
+            if (rb.velocity.x < -17)
+            {
+                var SpeedRound_Start = new Vector3(transform.position.x + (float)0.5, transform.position.y, transform.position.z);
+                Instantiate(SpeedRound, SpeedRound_Start, quaternion.identity);
+            }
+            StartCoroutine(SpeedRound_Restart());
+        }
     }
     void FixedUpdate()
     {
-        
         if (!isDash && !isDead)
         {
             if (DashTimeCount < 2 * Dash_count)
@@ -406,6 +424,7 @@ public class MoveCOntroller : MonoBehaviour
 
     private void OnBoomHigh(float BoomHighing, float Boom_time)
     {
+        UpBall.SetActive(true);
         rb.gravityScale = 0;
         isBoomHigh = true;
         BoomHighPower = BoomHighing;
@@ -417,6 +436,7 @@ public class MoveCOntroller : MonoBehaviour
         yield return new WaitForSeconds(Current_Boom_time);
         rb.gravityScale = MainGravity;
         isBoomHigh = false;
+        UpBall.SetActive(false);
     }
     private void OnBoomSpeed(float BoomSpeeding,float Boom_time)
     {
@@ -465,6 +485,11 @@ public class MoveCOntroller : MonoBehaviour
                 StartCoroutine(Restart());
             }
         }
+    }
+    private IEnumerator SpeedRound_Restart()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isSpeedRound = false;
     }
     private IEnumerator Restart()
     {

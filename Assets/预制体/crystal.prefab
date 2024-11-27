@@ -103,6 +103,8 @@ MonoBehaviour:
   ChangeSprite: {fileID: 4441337933121828100}
   closeCollider: {fileID: 6029089071058456994}
   IncreaseEnergyEvent: {fileID: 11400000, guid: 29506d9e58cc2ba479a4748c3a85479a, type: 2}
+  CrystalAudioEvent: {fileID: 11400000, guid: 0a85b3ed1a6b6894c87ec1e269d603cc, type: 2}
+  Clip: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
 --- !u!58 &6029089071058456994
 CircleCollider2D:
   m_ObjectHideFlags: 0
