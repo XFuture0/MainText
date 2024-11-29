@@ -14,6 +14,8 @@ public class Stop_Box : MonoBehaviour
     [Header("¹ã²¥")]
     public VoidEventSO StopPlayerEvent;
     public VoidEventSO ContinuePlayerEvent;
+    public AudioEventSO OpenEvent;
+    public AudioClip OpenClip;
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO UnLoadEvent;
     private void Awake()
@@ -36,6 +38,7 @@ public class Stop_Box : MonoBehaviour
         CantOpenStop = GameObject.FindGameObjectWithTag("UIManager");
         if (!CantOpenStop)
         {
+            OpenEvent.AudioRaiseEvent(OpenClip);
             isOpenStop = !isOpenStop;
             StopMenu.SetActive(isOpenStop);
             if (isOpenStop == true)

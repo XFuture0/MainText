@@ -8,8 +8,9 @@ public class StayEnemy : MonoBehaviour
 {
     public GameObject HitPart;
     public Image EnemyHealthBlue;
-    [Header("事件监听")]
-    public VoidEventSO TimeStopEnemyEvent;
+    public AudioClip Clip;
+    [Header("广播")]
+    public AudioEventSO DeadEvent;
     [Header("怪物血量")]
     public int EnemyHealth;
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,26 +23,9 @@ public class StayEnemy : MonoBehaviour
             if (EnemyHealth <= 0)
             {
                 Time.timeScale = 1f;
+                DeadEvent.AudioRaiseEvent(Clip);
                 Destroy(gameObject);
             }
         }
-    }
-    private void OnEnable()
-    {
-        TimeStopEnemyEvent.OnEventRaised += OnTimeStop;
-    }
-    private void OnTimeStop()
-    {
-        Time.timeScale = 0.5f;
-        StartCoroutine(WaitTime());
-    }
-    private IEnumerator WaitTime()
-    {
-        yield return new WaitForSeconds(3.2f);
-        Time.timeScale = 1f;
-    }
-    private void OnDisable()
-    {
-        TimeStopEnemyEvent.OnEventRaised -= OnTimeStop;
     }
 }

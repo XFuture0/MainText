@@ -20,30 +20,21 @@ public class TextManager : MonoBehaviour
     private void Awake()
     {
         StartList(Textin);
-        index = 0;
     }
     private void OnEnable()
     {
         inputActions = new InputPlayController();
         inputActions.Enable();
         inputActions.Player.Enter.started += OnEnterText;
+        Name.text = "???";
+        MainText.text = Textlist[1].ToString();
+        index = 2;
     }
 
     private void OnEnterText(InputAction.CallbackContext context)
     {
         if (index <= TextLength)
         {
-            switch (Textlist[index]) 
-            {
-                case "A\r":
-                    Name.text = "Player";
-                    index++;
-                    break;
-                case "B\r":
-                    Name.text = "???";
-                    index++;
-                    break;
-            }
             if (index == TextLength)
             {
                 PanelOwn.SetActive(false);
@@ -61,6 +52,17 @@ public class TextManager : MonoBehaviour
     private IEnumerator TextPrint()
     {
         canPress = true;
+        switch (Textlist[index])
+        {
+            case "A\r":
+                Name.text = "Player";
+                index++;
+                break;
+            case "B\r":
+                Name.text = "???";
+                index++;
+                break;
+        }
         MainText.text = " ";
         for (int i = 0;i < Textlist[index].Length;i++)
         {
@@ -89,7 +91,6 @@ public class TextManager : MonoBehaviour
         foreach (var Text in text)
         {
             Textlist.Add(Text);
-            Debug.Log(Text);
         }
         TextLength = Textlist.Count - 1;
     }

@@ -7,6 +7,9 @@ public class Dish : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float DishFace;
+    public AudioClip Clip;
+    [Header("¹ã²¥")]
+    public AudioEventSO ThrowDishEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public FlaotEventSO DishCastEvent;
     private void Awake()
@@ -24,6 +27,7 @@ public class Dish : MonoBehaviour
     private void OnEnable()
     {
         DishCastEvent.OnFloatEventRaised += OnCastDish;
+        ThrowDishEvent.AudioRaiseEvent(Clip);
     }
 
     private void OnCastDish(float Face)

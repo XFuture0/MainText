@@ -10,6 +10,7 @@ public class Signactive : MonoBehaviour
 
     public InputPlayController inputActions;
     public GameObject SignSprite;
+    public GameObject EmojiSprite;
     public Transform PlayerScale;
     public Animator Playeranim;
     public AudioClip PressAudio;
@@ -45,6 +46,7 @@ public class Signactive : MonoBehaviour
     {
         SignSprite.SetActive(canPress);
         SignSprite.transform.localScale = PlayerScale.localScale;
+        EmojiSprite.transform.localScale = PlayerScale.localScale;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

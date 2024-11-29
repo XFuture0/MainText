@@ -12,6 +12,8 @@ public class Setting : MonoBehaviour
     [Header("¹ã²¥")]
     public VoidEventSO Setting_State_Open_Event;
     public VoidEventSO Setting_State_Close_Event;
+    public AudioEventSO OpenEvent;
+    public AudioClip OpenClip;
     private void Awake()
     {
         inputActions = new InputPlayController();
@@ -22,6 +24,7 @@ public class Setting : MonoBehaviour
     {
         if (Settings.activeSelf == true)
         {
+            OpenEvent.AudioRaiseEvent(OpenClip);
             Settings.SetActive(false);
             Setting_State_Close_Event.RaiseEvent();
         }
@@ -32,6 +35,7 @@ public class Setting : MonoBehaviour
     }
     private void OnOpenSettings()
     {
+        OpenEvent.AudioRaiseEvent(OpenClip);
         Settings.SetActive(true);
         Setting_State_Open_Event.RaiseEvent();
     }

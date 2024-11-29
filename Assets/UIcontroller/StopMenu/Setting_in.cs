@@ -11,6 +11,9 @@ public class Setting_in : MonoBehaviour
     public Button Settingin;
     public InputPlayController inputActions;
     public GameObject Setting;
+    [Header("¹ã²¥")]
+    public AudioEventSO OpenEvent;
+    public AudioClip OpenClip;
     private void Awake()
     {
         inputActions = new InputPlayController();
@@ -31,6 +34,7 @@ public class Setting_in : MonoBehaviour
     }
     public void OpenSet()
     {
+        OpenEvent.AudioRaiseEvent(OpenClip);
         Setting.SetActive(true);
     }
     private void OnDisable()

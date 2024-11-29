@@ -15,6 +15,7 @@ public class MoveCOntroller : MonoBehaviour
     private Check check;
     public Animator anim;
     public Transform own;
+    public bool isGetDish;
     [Header("附属物")]
     public GameObject Dish;
     public GameObject Attack3;
@@ -61,12 +62,15 @@ public class MoveCOntroller : MonoBehaviour
     public FlaotEventSO DishCastEvent;
     public AudioEventSO DashAudioEvent;
     public AudioEventSO JumpAudioEvent;
+    public AudioEventSO PlayerAttack3AudioEvent;
+    public AudioEventSO DeadAudioEvent;
     public AudioClip DashClip;
     public AudioClip JumpClip;
+    public AudioClip PlayerAttack3Clip;
+    public AudioClip DeadClip;
     public VoidEventSO RestartEvent;
     public VoidEventSO FadeinEvent;
     public TransformEventSO PlayerPositionEvent;
-    public VoidEventSO TimeStopEnemyEvent;
     [Header("人物死亡")]
     public bool isDead;
     [Header("事件监听")]
@@ -81,6 +85,7 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO FindPlayerEvent;
     public VoidEventSO eyeJumpEvent;
     public VoidEventSO CanPressQEvent;
+    public VoidEventSO GetDishEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -317,7 +322,6 @@ public class MoveCOntroller : MonoBehaviour
     {
         if(Combo == 3)
         {
-            TimeStopEnemyEvent.RaiseEvent();
             PlayerBloom.SetActive(true);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             inputActions.Player.Disable();
@@ -349,6 +353,17 @@ public class MoveCOntroller : MonoBehaviour
             var Quat = new quaternion(0, 0,0,1);
             Instantiate(Attack3, Attack3Position, Quat);
         }
+        StartCoroutine(BackTime());
+    }
+    private IEnumerator BackTime()
+    {
+        yield return new WaitForSeconds(1.2f);
+        Time.timeScale = 1f;
+    }
+    public void OnAttack3Audio()
+    {
+        Time.timeScale = 0.5f;
+        PlayerAttack3AudioEvent.AudioRaiseEvent(PlayerAttack3Clip);
     }
     public void OnTriggerStay2D(Collider2D other)
     {
@@ -360,20 +375,23 @@ public class MoveCOntroller : MonoBehaviour
     }
     private void ThrowDish(InputAction.CallbackContext context)
     {
-        if (canPressQ)
+        if (isGetDish)
         {
-            var DishPosition = new Vector3(0, 0, 0);
-            if (transform.localScale.x < 0)
+            if (canPressQ)
             {
-                 DishPosition = new Vector3(transform.position.x + (float)-0.55, transform.position.y, transform.position.z);
+                var DishPosition = new Vector3(0, 0, 0);
+                if (transform.localScale.x < 0)
+                {
+                    DishPosition = new Vector3(transform.position.x + (float)-0.55, transform.position.y, transform.position.z);
+                }
+                if (transform.localScale.x > 0)
+                {
+                    DishPosition = new Vector3(transform.position.x + (float)0.55, transform.position.y, transform.position.z);
+                }
+                Instantiate(Dish, DishPosition, quaternion.identity);
+                DishCastEvent.FloatRaiseEvent(transform.localScale.x);
+                canPressQ = false;
             }
-            if (transform.localScale.x > 0)
-            {
-                DishPosition = new Vector3(transform.position.x + (float)0.55, transform.position.y, transform.position.z);
-            }
-            Instantiate(Dish, DishPosition, quaternion.identity);
-            DishCastEvent.FloatRaiseEvent(transform.localScale.x);
-            canPressQ = false;
         }
     }
     private void OnEnable()
@@ -389,7 +407,14 @@ public class MoveCOntroller : MonoBehaviour
         FindPlayerEvent.OnEventRaised += OnFindPlayer;
         eyeJumpEvent.OnEventRaised += PlayerJump_eye;
         CanPressQEvent.OnEventRaised += OnCanPressQ;
+        GetDishEvent.OnEventRaised += OnGetDash;
     }
+
+    private void OnGetDash()
+    {
+        isGetDish = true;
+    }
+
     private void OnCanPressQ()
     {
         canPressQ = true;
@@ -463,6 +488,7 @@ public class MoveCOntroller : MonoBehaviour
     {
         if (!isDead)
         {
+            DeadAudioEvent.AudioRaiseEvent(DeadClip);
             anim.SetTrigger("Dead");
             isDead = true;
             inputActions.Disable();
@@ -514,5 +540,6 @@ public class MoveCOntroller : MonoBehaviour
         FindPlayerEvent.OnEventRaised -= OnFindPlayer;
         eyeJumpEvent.OnEventRaised -= PlayerJump_eye;
         CanPressQEvent.OnEventRaised -= OnCanPressQ;
+        GetDishEvent.OnEventRaised -= OnGetDash;
     }
 }

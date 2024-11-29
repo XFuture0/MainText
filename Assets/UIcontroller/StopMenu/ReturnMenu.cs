@@ -13,6 +13,8 @@ public class ReturnMenu : MonoBehaviour
     public GameObject Energy_Line;
     [Header("¹ã²¥")]
     public VoidEventSO ReturnMainMenuEvent;
+    public AudioEventSO OpenEvent;
+    public AudioClip OpenClip;
     private void Awake()
     {
         inputActions = new InputPlayController();
@@ -28,6 +30,7 @@ public class ReturnMenu : MonoBehaviour
         Name = EventSystem.current.currentSelectedGameObject.name;
         if (Name == "ReturnMenu")
         {
+            OpenEvent.AudioRaiseEvent(OpenClip);
             ReturnMenuing?.onClick.Invoke();
         }
     }

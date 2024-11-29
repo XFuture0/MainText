@@ -5,19 +5,13 @@ using UnityEngine.Rendering.Universal;
 
 public class DeadBone : MonoBehaviour, Iinteractive
 {
-    public SpriteRenderer Sprite;
     public GameObject DeadLight;
     [Header("¹ã²¥")]
-    public VoidEventSO ThrowFlashEvent;
-    private void Awake()
-    {
-        Sprite = GetComponent<SpriteRenderer>();
-    }
+    public VoidEventSO ThrowDashEvent;
     public void TriggerAction()
     {
+        this.gameObject.tag = "Untagged";
         DeadLight.gameObject.SetActive(false);
-        gameObject.tag = ("Untagged");
-        Sprite.sortingOrder = 0;
-        ThrowFlashEvent?.RaiseEvent();
+        ThrowDashEvent?.RaiseEvent();
     }
 }

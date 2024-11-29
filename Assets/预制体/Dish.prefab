@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882eb327bc75bc342b92f9f73822f661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Clip: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
+  ThrowDishEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   DishCastEvent: {fileID: 11400000, guid: 79f5918902c630f4cb14300c78f6afb5, type: 2}
 --- !u!50 &6684932205892538446
 Rigidbody2D:
