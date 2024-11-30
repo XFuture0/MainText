@@ -21,6 +21,7 @@ public class CaremaChange : MonoBehaviour
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO Press_X_TransformEvent;
     public TransformEventSO Press_Z_TransformEvent;
+    public TransformEventSO TrackDeathEvent;
     public GameObjectEventSO FirstSelectEvent;
     public VoidEventSO Setting_State_Close_Event;
     public VoidEventSO LookPlayerEvent;
@@ -69,6 +70,13 @@ public class CaremaChange : MonoBehaviour
         LookPlayerEvent.OnEventRaised += OnLookPlayer;
         UnLoadEvent.OnEventRaised += OnUnLoad;
         CloseTargetEvent.OnEventRaised += OnCloseTarget;
+        TrackDeathEvent.OnTransformEventRaised += OnTrackDeath;
+    }
+
+    private void OnTrackDeath(Transform DeathTransform)
+    {
+        VirtualCamera.Follow = DeathTransform;
+        VirtualCamera.LookAt = DeathTransform;
     }
 
     private void OnCloseTarget()
@@ -171,5 +179,6 @@ public class CaremaChange : MonoBehaviour
         LookPlayerEvent.OnEventRaised -= OnLookPlayer;
         UnLoadEvent.OnEventRaised -= OnUnLoad;
         CloseTargetEvent.OnEventRaised -= OnCloseTarget;
+        TrackDeathEvent.OnTransformEventRaised -= OnTrackDeath;
     }
 }

@@ -19,6 +19,7 @@ public class eyeBallEnemy : MonoBehaviour
     public Animator anim;
     public Rigidbody2D rb;
     public GameObject eyeSign;
+    public bool isRush;
     [HideInInspector]public bool isFindPlayer;
     [HideInInspector]public Transform PlayerPosition;
     [Header("计时器")]
@@ -26,6 +27,9 @@ public class eyeBallEnemy : MonoBehaviour
     public float Time_Count;
     [Header("广播")]
     public VoidEventSO FindPlayerEvent;
+    public VoidEventSO EyeEnemyRushEvent;
+    public VoidEventSO EyeEnemyNoRushEvent;
+    public VoidEventSO CaremaImpulseEvent;
     [Header("事件监听")]
     public TransformEventSO PlayerPositionEvent;
     public VoidEventSO eyeJumpEvent;
@@ -51,6 +55,16 @@ public class eyeBallEnemy : MonoBehaviour
         if (Nowstate != Waitstate)
         {
             Time_Count -= Time.deltaTime;
+        }
+        if(Nowstate == Rushstate)
+        {
+            isRush = true;
+            EyeEnemyRushEvent.RaiseEvent();
+        }
+        if(Nowstate != Rushstate)
+        {
+            isRush = false;
+            EyeEnemyNoRushEvent.RaiseEvent();
         }
     }
     private void FixedUpdate()

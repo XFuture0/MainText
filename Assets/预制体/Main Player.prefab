@@ -741,6 +741,7 @@ Transform:
   - {fileID: 5222943854699034252}
   - {fileID: 1895540611233542656}
   - {fileID: 438561481640663920}
+  - {fileID: 4067783948753077713}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6308602637353864670
@@ -881,10 +882,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   own: {fileID: 0}
+  isGetDish: 0
   Dish: {fileID: 0}
   Attack3: {fileID: 0}
   PlayerBloom: {fileID: 0}
   UpBall: {fileID: 0}
+  SpeedRound: {fileID: 0}
   isBoomHigh: 0
   PlayerSpeed: 300
   Combo: 0
@@ -902,12 +905,15 @@ MonoBehaviour:
   DishCastEvent: {fileID: 0}
   DashAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   JumpAudioEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
+  PlayerAttack3AudioEvent: {fileID: 0}
+  DeadAudioEvent: {fileID: 0}
   DashClip: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   JumpClip: {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
+  PlayerAttack3Clip: {fileID: 0}
+  DeadClip: {fileID: 0}
   RestartEvent: {fileID: 0}
   FadeinEvent: {fileID: 0}
   PlayerPositionEvent: {fileID: 0}
-  TimeStopEnemyEvent: {fileID: 0}
   isDead: 0
   DeadEvent: {fileID: 0}
   NoDeadEvent: {fileID: 0}
@@ -920,6 +926,7 @@ MonoBehaviour:
   FindPlayerEvent: {fileID: 0}
   eyeJumpEvent: {fileID: 0}
   CanPressQEvent: {fileID: 0}
+  GetDishEvent: {fileID: 0}
 --- !u!114 &2263843393028257447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressEvent: {fileID: 11400000, guid: 1433156cd16b9dc4f8a5cdfbee31d0d8, type: 2}
   SignSprite: {fileID: 0}
+  EmojiSprite: {fileID: 0}
   PlayerScale: {fileID: 0}
   Playeranim: {fileID: 0}
   PressAudio: {fileID: 8300000, guid: 37fb2ade76250d64aaa7abebfded8b1e, type: 3}
@@ -1406,3 +1414,87 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &9082298353102182640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4067783948753077713}
+  - component: {fileID: 254599960163210267}
+  m_Layer: 0
+  m_Name: Emoji_worry_temp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4067783948753077713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082298353102182640}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 145.24, y: -23.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5673691836761404177}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &254599960163210267
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082298353102182640}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1155908031
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1069996105, guid: 3cf74c79beb2a1c4a93dbc63012a0806, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

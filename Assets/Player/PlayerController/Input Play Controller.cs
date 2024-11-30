@@ -64,24 +64,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LeftChange"",
-                    ""type"": ""Button"",
-                    ""id"": ""1f371425-7026-4a9f-a3c4-dce861d7ebb5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightChange"",
-                    ""type"": ""Button"",
-                    ""id"": ""555be327-3e8c-45e7-9d37-897f0a5ce965"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""UP"",
                     ""type"": ""Button"",
                     ""id"": ""1a8b3f2e-cf9b-4a92-9188-f12c5189be67"",
@@ -196,28 +178,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7a10843f-e29c-47ac-8ebf-ac41d67a565f"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftChange"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""30a62725-7cee-4141-bd80-2c01b0ceab1a"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightChange"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bf16609e-c164-4802-959e-09ae84589ecd"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -312,6 +272,15 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item"",
+                    ""type"": ""Button"",
+                    ""id"": ""199b27c4-a99c-4257-b667-dd5c831ea165"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -358,6 +327,17 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""action"": ""Stop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1b9465b-d0c4-4429-9d3e-b58c544cf1e6"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -370,8 +350,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
         m_Player_Cash = m_Player.FindAction("Cash", throwIfNotFound: true);
-        m_Player_LeftChange = m_Player.FindAction("LeftChange", throwIfNotFound: true);
-        m_Player_RightChange = m_Player.FindAction("RightChange", throwIfNotFound: true);
         m_Player_UP = m_Player.FindAction("UP", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
@@ -383,6 +361,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_UI_Out = m_UI.FindAction("Out", throwIfNotFound: true);
         m_UI_Settings = m_UI.FindAction("Settings", throwIfNotFound: true);
         m_UI_Stop = m_UI.FindAction("Stop", throwIfNotFound: true);
+        m_UI_Item = m_UI.FindAction("Item", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -448,8 +427,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Press;
     private readonly InputAction m_Player_Cash;
-    private readonly InputAction m_Player_LeftChange;
-    private readonly InputAction m_Player_RightChange;
     private readonly InputAction m_Player_UP;
     private readonly InputAction m_Player_Down;
     private readonly InputAction m_Player_Throw;
@@ -463,8 +440,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Press => m_Wrapper.m_Player_Press;
         public InputAction @Cash => m_Wrapper.m_Player_Cash;
-        public InputAction @LeftChange => m_Wrapper.m_Player_LeftChange;
-        public InputAction @RightChange => m_Wrapper.m_Player_RightChange;
         public InputAction @UP => m_Wrapper.m_Player_UP;
         public InputAction @Down => m_Wrapper.m_Player_Down;
         public InputAction @Throw => m_Wrapper.m_Player_Throw;
@@ -491,12 +466,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Cash.started += instance.OnCash;
             @Cash.performed += instance.OnCash;
             @Cash.canceled += instance.OnCash;
-            @LeftChange.started += instance.OnLeftChange;
-            @LeftChange.performed += instance.OnLeftChange;
-            @LeftChange.canceled += instance.OnLeftChange;
-            @RightChange.started += instance.OnRightChange;
-            @RightChange.performed += instance.OnRightChange;
-            @RightChange.canceled += instance.OnRightChange;
             @UP.started += instance.OnUP;
             @UP.performed += instance.OnUP;
             @UP.canceled += instance.OnUP;
@@ -528,12 +497,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Cash.started -= instance.OnCash;
             @Cash.performed -= instance.OnCash;
             @Cash.canceled -= instance.OnCash;
-            @LeftChange.started -= instance.OnLeftChange;
-            @LeftChange.performed -= instance.OnLeftChange;
-            @LeftChange.canceled -= instance.OnLeftChange;
-            @RightChange.started -= instance.OnRightChange;
-            @RightChange.performed -= instance.OnRightChange;
-            @RightChange.canceled -= instance.OnRightChange;
             @UP.started -= instance.OnUP;
             @UP.performed -= instance.OnUP;
             @UP.canceled -= instance.OnUP;
@@ -574,6 +537,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Out;
     private readonly InputAction m_UI_Settings;
     private readonly InputAction m_UI_Stop;
+    private readonly InputAction m_UI_Item;
     public struct UIActions
     {
         private @InputPlayController m_Wrapper;
@@ -582,6 +546,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         public InputAction @Out => m_Wrapper.m_UI_Out;
         public InputAction @Settings => m_Wrapper.m_UI_Settings;
         public InputAction @Stop => m_Wrapper.m_UI_Stop;
+        public InputAction @Item => m_Wrapper.m_UI_Item;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -603,6 +568,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Stop.started += instance.OnStop;
             @Stop.performed += instance.OnStop;
             @Stop.canceled += instance.OnStop;
+            @Item.started += instance.OnItem;
+            @Item.performed += instance.OnItem;
+            @Item.canceled += instance.OnItem;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -619,6 +587,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Stop.started -= instance.OnStop;
             @Stop.performed -= instance.OnStop;
             @Stop.canceled -= instance.OnStop;
+            @Item.started -= instance.OnItem;
+            @Item.performed -= instance.OnItem;
+            @Item.canceled -= instance.OnItem;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -642,8 +613,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnPress(InputAction.CallbackContext context);
         void OnCash(InputAction.CallbackContext context);
-        void OnLeftChange(InputAction.CallbackContext context);
-        void OnRightChange(InputAction.CallbackContext context);
         void OnUP(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
@@ -656,5 +625,6 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnOut(InputAction.CallbackContext context);
         void OnSettings(InputAction.CallbackContext context);
         void OnStop(InputAction.CallbackContext context);
+        void OnItem(InputAction.CallbackContext context);
     }
 }

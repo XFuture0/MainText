@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9131006648267778735}
   - component: {fileID: 9086177864742772430}
   - component: {fileID: 7686097169087169324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door_Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 9131006648267778735}
-  OpenDoor: {fileID: 11400000, guid: 16896e3264b996e49a238ac2cce7b418, type: 2}
+  OpenDoor: {fileID: 0}
   this_Collider: {fileID: 7686097169087169324}
 --- !u!61 &7686097169087169324
 BoxCollider2D:

@@ -23,6 +23,7 @@ public class eyeEnemyRush : State
     }
     public override void OnExit(eyeBallEnemy nowEnemy)
     {
+        nowEnemy.CaremaImpulseEvent.RaiseEvent();
         nowEnemy.anim.SetBool("Rush", false);
         nowEnemy.HitSth.enabled = false;
     }

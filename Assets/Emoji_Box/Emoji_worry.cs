@@ -12,7 +12,7 @@ public class Emoji_worry : MonoBehaviour
     public VoidEventSO StopPlayerEvent;
     public VoidEventSO ContinuePlayerEvent;
     public AudioEventSO GetCollectEvent;
-    public VoidEventSO OpenText1z2z2Event;
+    public VoidEventSO GetEmoji_worryEvent;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!IsGetEmoji)
@@ -28,7 +28,7 @@ public class Emoji_worry : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         ContinuePlayerEvent.RaiseEvent();
-        OpenText1z2z2Event.RaiseEvent();
         Own.gameObject.SetActive(false);
+        GetEmoji_worryEvent.RaiseEvent();
     }
 }

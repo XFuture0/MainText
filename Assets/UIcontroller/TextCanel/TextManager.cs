@@ -17,6 +17,8 @@ public class TextManager : MonoBehaviour
     private int index;
     private int TextLength;
     List<string> Textlist = new List<string>();
+    [Header("¹ã²¥")]
+    public VoidEventSO ContinuePlayerEvent;
     private void Awake()
     {
         StartList(Textin);
@@ -30,13 +32,13 @@ public class TextManager : MonoBehaviour
         MainText.text = Textlist[1].ToString();
         index = 2;
     }
-
     private void OnEnterText(InputAction.CallbackContext context)
     {
         if (index <= TextLength)
         {
             if (index == TextLength)
             {
+                ContinuePlayerEvent.RaiseEvent();
                 PanelOwn.SetActive(false);
             }
             if (!canPress && !canSkip)
@@ -60,6 +62,10 @@ public class TextManager : MonoBehaviour
                 break;
             case "B\r":
                 Name.text = "???";
+                index++;
+                break;
+            case "C\r":
+                Name.text = "Ê¹Õß";
                 index++;
                 break;
         }

@@ -191,6 +191,7 @@ MonoBehaviour:
   ContinuePlayerEvent: {fileID: 11400000, guid: 638cee17c572a564cb5f866cfaaa4467, type: 2}
   GetCollectEvent: {fileID: 11400000, guid: 0a85b3ed1a6b6894c87ec1e269d603cc, type: 2}
   Get_EndCollectEvent: {fileID: 11400000, guid: 0a85b3ed1a6b6894c87ec1e269d603cc, type: 2}
+  CollectionAddEvent: {fileID: 11400000, guid: c50c32736e9047d47831ef80e4a02c49, type: 2}
 --- !u!60 &1081843898055021554
 PolygonCollider2D:
   m_ObjectHideFlags: 0

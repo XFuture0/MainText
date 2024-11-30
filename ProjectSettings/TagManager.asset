@@ -11,6 +11,7 @@ TagManager:
   - Item
   - PlayerHit
   - Music
+  - EyeBall
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public AudioEventSO BGMFEvent;
     public FlaotEventSO AudioChangeEvent;
     public AudioEventSO ItemAudioEvent;
+    public VoidEventSO CloseBGMEvent;
+    public VoidEventSO CloseItemEvent;
     [Header("“Ù¿÷π‹¿Ì∆˜")]
     public AudioSource SavePointsourse;
     public AudioSource FootStepsourse;
@@ -33,6 +35,17 @@ public class AudioManager : MonoBehaviour
         BGMEvent.OnAudioEventRaised += OnBGMAudio;
         BGMFEvent.OnAudioEventRaised += OnBGMFAudio;
         ItemAudioEvent.OnAudioEventRaised += OnItemAudio;
+        CloseBGMEvent.OnEventRaised += OnCloseBGM;
+        CloseItemEvent.OnEventRaised += OnCloseItem;
+    }
+    private void OnCloseItem()
+    {
+        Itemsourse.Stop();
+    }
+
+    private void OnCloseBGM()
+    {
+        BGMsourse.Stop();
     }
 
     private void OnItemAudio(AudioClip Clip)
@@ -92,5 +105,7 @@ public class AudioManager : MonoBehaviour
         BGMEvent.OnAudioEventRaised -= OnBGMAudio;
         BGMFEvent.OnAudioEventRaised -= OnBGMFAudio;
         ItemAudioEvent.OnAudioEventRaised -= OnItemAudio;
+        CloseBGMEvent.OnEventRaised -= OnCloseBGM;
+        CloseItemEvent.OnEventRaised -= OnCloseItem;
     }
 }

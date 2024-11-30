@@ -9,11 +9,13 @@ public class Carema_Track : MonoBehaviour
     private Transform Player;
     private Transform Carema_Position;
     private Transform Last_Position;
-   // public Vector3 Amount_Move;
     private bool FirstTime;
     public Transform Back;
     public Transform Back1;
     public Transform Back2;
+    public AudioClip BGMClip;
+    [Header("¹ã²¥")]
+    public AudioEventSO OpenBGMEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO PlayerPositionEvent;
     private void Awake()
@@ -22,6 +24,7 @@ public class Carema_Track : MonoBehaviour
     }
     private void OnEnable()
     {
+        OpenBGMEvent.AudioRaiseEvent(BGMClip);
         PlayerPositionEvent.OnTransformEventRaised += OnCarema_Position;
     }
 

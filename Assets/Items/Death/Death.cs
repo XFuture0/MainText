@@ -11,43 +11,69 @@ public class Death : MonoBehaviour
     public GameObject Hit;
     private int n = 0;
     private Animator anim;
+    private bool IsOpen;
+    private bool canMove;
     [Header("计时器")]
     public float time;
     private float time_count;
+    public float Starttime;
+    private float Starttime_count;
+    [Header("广播")]
+    public VoidEventSO LookPlayerEvent;
     [Header("事件监听")]
     public TransformEventSO PlayerPositionEvent;
     private void Awake()
     {
+        canMove = true;
+        IsOpen = false;
         time_count = time;
+        Starttime_count = Starttime;
        anim = GetComponent<Animator>();
     }
     private void Update()
     {
-        time_count -= Time.deltaTime;
-        if (time_count < 0)
+        if (IsOpen)
         {
-            n = UnityEngine.Random.Range(1, 2);
-            time_count = time;
+            time_count -= Time.deltaTime;
+            if (time_count < 0)
+            {
+                n = UnityEngine.Random.Range(1, 2);
+                time_count = time;
+            }
+            if (n == 1)
+            {
+                anim.SetTrigger("Hit");
+                n = 0;
+            }
         }
-        if(n == 1)
+        if (canMove)
         {
-            anim.SetTrigger("Hit");
-            n = 0;
+            Starttime_count -= Time.deltaTime;
+            if(Starttime_count < 0)
+            {
+                LookPlayerEvent.RaiseEvent();
+                StartCoroutine(WaitTime());
+            }
+            gameObject.transform.position = new Vector3(transform.position.x + (float)0.01, transform.position.y, transform.position.z);
         }
-        if (n == 2)
-        {
-            Mode2();
-            n = 0;
-        }
+    }
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(0.1f);
+        IsOpen = true;
     }
     private void OnEnable()
     {
         PlayerPositionEvent.OnTransformEventRaised += OnGetPositon;
+        
     }
 
     private void OnGetPositon(Transform Position)
     {
-        gameObject.transform.localPosition = new Vector3(Position.position.x + PositionAdjust_X, Position.position.y + PositionAdjust_Y, 0);
+        if (IsOpen)
+        {
+            gameObject.transform.localPosition = new Vector3(Position.position.x + PositionAdjust_X, Position.position.y + PositionAdjust_Y, 0);
+        }
     }
 
     private void OnDisable()
@@ -57,9 +83,5 @@ public class Death : MonoBehaviour
     private void Mode1()
     {
         Instantiate(Hit,new Vector3(transform.position.x + HitAdjust_X , transform.position.y,transform.position.z),Quaternion.identity);
-    }
-    private void Mode2()
-    {
-        
     }
 }

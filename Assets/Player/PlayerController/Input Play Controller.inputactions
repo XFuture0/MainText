@@ -42,24 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftChange",
-                    "type": "Button",
-                    "id": "1f371425-7026-4a9f-a3c4-dce861d7ebb5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RightChange",
-                    "type": "Button",
-                    "id": "555be327-3e8c-45e7-9d37-897f0a5ce965",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "UP",
                     "type": "Button",
                     "id": "1a8b3f2e-cf9b-4a92-9188-f12c5189be67",
@@ -174,28 +156,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7a10843f-e29c-47ac-8ebf-ac41d67a565f",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftChange",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30a62725-7cee-4141-bd80-2c01b0ceab1a",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightChange",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bf16609e-c164-4802-959e-09ae84589ecd",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -290,6 +250,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Item",
+                    "type": "Button",
+                    "id": "199b27c4-a99c-4257-b667-dd5c831ea165",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -334,6 +303,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1b9465b-d0c4-4429-9d3e-b58c544cf1e6",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
