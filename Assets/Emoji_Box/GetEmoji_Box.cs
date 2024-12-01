@@ -13,6 +13,7 @@ public class GetEmoji_Box : MonoBehaviour
     public GameObject TipText;
     private float WideLength;
     private bool IsOpen;
+    private bool IsCome;
     [Header("¹ã²¥")]
     public VoidEventSO OpenText1z2z2Event;
     [Header("ÊÂ¼þ¼àÌý")]
@@ -47,9 +48,13 @@ public class GetEmoji_Box : MonoBehaviour
             }
             if (WideLength > 15)
             {
-                IsOpen = false;
-                TipText.SetActive(true);
-                StartCoroutine(WaitTime());
+                if (!IsCome)
+                {
+                    IsOpen = false;
+                    IsCome = true;
+                    TipText.SetActive(true);
+                    StartCoroutine(WaitTime());
+                }
             }
         }
     }

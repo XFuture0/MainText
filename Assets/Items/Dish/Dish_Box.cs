@@ -14,6 +14,13 @@ public class Dish_Box : MonoBehaviour
             StartCoroutine(WaitTime());
         }
     }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Bound")
+        {
+            StartCoroutine(WaitTime());
+        }
+    }
     private IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(1f);

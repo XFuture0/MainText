@@ -275,6 +275,18 @@ public class MoveCOntroller : MonoBehaviour
     {
         if (DashTimeCount >= 2)
         {
+            if (isPressW && !(isPressA || isPressD))
+            {
+                Instantiate(SpeedRound, transform.position, Quaternion.Euler(new Vector3(0, 0, 90)));
+            }
+            else if (isPressS && !(isPressA || isPressD))
+            {
+                Instantiate(SpeedRound, transform.position, Quaternion.Euler(new Vector3(0, 0, 90)));
+            }
+            else
+            {
+                Instantiate(SpeedRound, transform.position, quaternion.identity);
+            }
             DashTimeCount -= 2;
             rb.gravityScale = 0;
             DashAudioEvent.AudioRaiseEvent(DashClip);
@@ -432,10 +444,10 @@ public class MoveCOntroller : MonoBehaviour
     }
     private void OnContinuePlayer()
     {
-        inputActions.Player.Enable();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        inputActions.Player.Enable();
+        rb.velocity = new Vector2(0, -5);
     }
-
     private void OnStopPlayer()
     {
         inputActions.Player.Disable();

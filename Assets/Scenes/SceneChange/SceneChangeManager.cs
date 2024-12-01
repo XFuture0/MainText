@@ -28,6 +28,7 @@ public class SceneChangeManager : MonoBehaviour
     public SceneChangeEventSO NewGameEvent;
     public VoidEventSO SceneRestartEvent;
     public VoidEventSO ReturnMainMenuEvent;
+    public TransformEventSO ChangeRestartEvent;
     [Header("¹ã²¥")]
     public VoidEventSO BoundChangeEvent;
     public VoidEventSO DeadRestart;
@@ -42,7 +43,14 @@ public class SceneChangeManager : MonoBehaviour
         SceneRestartEvent.OnEventRaised += OnSceneRestart;
         NewGameEvent.OnSceneChangeEvent += OnNewGame;
         ReturnMainMenuEvent.OnEventRaised += OnMainMenu;
+        ChangeRestartEvent.OnTransformEventRaised += OnChangeRestart;
     }
+
+    private void OnChangeRestart(Transform Player)
+    {
+        ChangePosition = Player.position;
+    }
+
     private void OnMainMenu()
     {
         isEndGame = true;
@@ -110,5 +118,6 @@ public class SceneChangeManager : MonoBehaviour
         SceneRestartEvent.OnEventRaised -= OnSceneRestart;
         NewGameEvent.OnSceneChangeEvent -= OnNewGame;
         ReturnMainMenuEvent.OnEventRaised -= OnMainMenu;
+        ChangeRestartEvent.OnTransformEventRaised -= OnChangeRestart;
     }
 }

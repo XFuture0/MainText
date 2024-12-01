@@ -22,6 +22,8 @@ public class Death : MonoBehaviour
     public VoidEventSO LookPlayerEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO PlayerPositionEvent;
+    public VoidEventSO DeadEvent;
+    public VoidEventSO DeadRestart;
     private void Awake()
     {
         canMove = true;
@@ -65,9 +67,21 @@ public class Death : MonoBehaviour
     private void OnEnable()
     {
         PlayerPositionEvent.OnTransformEventRaised += OnGetPositon;
+        DeadEvent.OnEventRaised += OnStopPlayer;
+        DeadRestart.OnEventRaised += OnContinuePlayer;
         
     }
 
+    private void OnContinuePlayer()
+    {
+        IsOpen = true;
+        time_count = time;
+    }
+
+    private void OnStopPlayer()
+    {
+        IsOpen = false;
+    }
     private void OnGetPositon(Transform Position)
     {
         if (IsOpen)
@@ -79,6 +93,8 @@ public class Death : MonoBehaviour
     private void OnDisable()
     {
         PlayerPositionEvent.OnTransformEventRaised -= OnGetPositon;
+        DeadEvent.OnEventRaised -= OnStopPlayer;
+        DeadRestart.OnEventRaised -= OnContinuePlayer;
     }
     private void Mode1()
     {
