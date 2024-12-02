@@ -85,6 +85,7 @@ public class TextManager : MonoBehaviour
             if(i == Textlist[index].Length - 1)
             {
                 canPress = false;
+                canSkip = false;
                 index++;
             }
         }

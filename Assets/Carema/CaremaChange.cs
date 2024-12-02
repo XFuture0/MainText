@@ -32,14 +32,9 @@ public class CaremaChange : MonoBehaviour
     public VoidEventSO X_In_Event;
     public VoidEventSO Set_State_Open_Event;
     public VoidEventSO Set_State_Close_Event;
-    public TransformEventSO PlayerPositionEvent;
     private void Awake()
     {
         Current_Tranform.name = "Newtree";
-    }
-    private void Update()
-    {
-        PlayerPositionEvent.TransformRaiseEvent(own);
     }
     private void FixedUpdate()
     {
