@@ -20,7 +20,6 @@ public class eyeBallEnemy : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject eyeSign;
     public bool isRush;
-    [HideInInspector]public bool isFindPlayer;
     [HideInInspector]public Transform PlayerPosition;
     [Header("¼ÆÊ±Æ÷")]
     public float time;
@@ -36,6 +35,7 @@ public class eyeBallEnemy : MonoBehaviour
     public VoidEventSO DeadEvent;
     [Header("ÊôÐÔ")]
     public float RushSpeed;
+    public float WalkSpeed;
     public float SpeedBet;
     private void Awake()
     {
@@ -92,7 +92,6 @@ public class eyeBallEnemy : MonoBehaviour
         {
             if (Nowstate == Hidestate)
             {
-                isFindPlayer = true;
                 SwitchState(StateType.Walk);
             }
         }
@@ -144,7 +143,7 @@ public class eyeBallEnemy : MonoBehaviour
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
-            rb.velocity = (Vector2)direction * RushSpeed;
+            rb.velocity = (Vector2)direction * WalkSpeed;
         }
     }
     public void RushPlayer()

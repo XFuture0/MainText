@@ -18,6 +18,7 @@ public class CaremaChange : MonoBehaviour
     private GameObject FirseSelecting;
     public GameObject SettingSelecting;
     private bool isUnLoad;
+    private bool isLookPlayer;
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO Press_X_TransformEvent;
     public TransformEventSO Press_Z_TransformEvent;
@@ -27,17 +28,23 @@ public class CaremaChange : MonoBehaviour
     public VoidEventSO LookPlayerEvent;
     public VoidEventSO UnLoadEvent;
     public VoidEventSO CloseTargetEvent;
+    public VoidEventSO DeathLookPlayerEvent;
     [Header("¹ã²¥")]
     public VoidEventSO ReturnEvent;
     public VoidEventSO X_In_Event;
     public VoidEventSO Set_State_Open_Event;
     public VoidEventSO Set_State_Close_Event;
+    public TransformEventSO PlayerPositionEvent;
     private void Awake()
     {
         Current_Tranform.name = "Newtree";
     }
     private void FixedUpdate()
     {
+        if (isLookPlayer)
+        {
+            PlayerPositionEvent.TransformRaiseEvent(own);
+        }
         if (isPressX)
         {
             VirtualCamera.m_Lens.OrthographicSize = VirtualCamera.m_Lens.OrthographicSize * SizeChange_X;
@@ -66,6 +73,12 @@ public class CaremaChange : MonoBehaviour
         UnLoadEvent.OnEventRaised += OnUnLoad;
         CloseTargetEvent.OnEventRaised += OnCloseTarget;
         TrackDeathEvent.OnTransformEventRaised += OnTrackDeath;
+        DeathLookPlayerEvent.OnEventRaised += OnDeathLookPlayer;
+    }
+
+    private void OnDeathLookPlayer()
+    {
+        isLookPlayer = true;
     }
 
     private void OnTrackDeath(Transform DeathTransform)
@@ -175,5 +188,6 @@ public class CaremaChange : MonoBehaviour
         UnLoadEvent.OnEventRaised -= OnUnLoad;
         CloseTargetEvent.OnEventRaised -= OnCloseTarget;
         TrackDeathEvent.OnTransformEventRaised -= OnTrackDeath;
+        DeathLookPlayerEvent.OnEventRaised += OnDeathLookPlayer;
     }
 }

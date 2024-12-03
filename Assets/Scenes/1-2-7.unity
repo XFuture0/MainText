@@ -327,6 +327,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 705085369}
     m_Modifications:
+    - target: {fileID: 2066589796002953979, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6347046279795521054, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
       propertyPath: m_Name
       value: eyeBallEnemy
@@ -334,6 +338,14 @@ PrefabInstance:
     - target: {fileID: 6347046279795521054, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
       propertyPath: m_TagString
       value: EyeBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324570100110593668, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
+      propertyPath: SpeedBet
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324570100110593668, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
+      propertyPath: WalkSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7324570100110593668, guid: f34d37a69332986419d4b3f1274b215a, type: 3}
       propertyPath: EyeEnemyRushEvent

@@ -11,6 +11,7 @@ public class CollectionBlock_Blue : MonoBehaviour
     public int Target_Count;
     private bool GetAllBlue;
     private bool OpenAudio;
+    private bool CloseAudio;
     public AudioClip Clip;
     [Header("¹ã²¥")]
     public AudioEventSO GetBlueAudioEvent;
@@ -49,7 +50,11 @@ public class CollectionBlock_Blue : MonoBehaviour
             }
             if(time_Count < 0)
             {
-                CloseItemAudioEvent.RaiseEvent();
+                if (!CloseAudio)
+                {
+                    CloseAudio = true;
+                    CloseItemAudioEvent.RaiseEvent();
+                }
             }
         }
     }

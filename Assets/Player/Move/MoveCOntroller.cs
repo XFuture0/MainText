@@ -86,6 +86,7 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO eyeJumpEvent;
     public VoidEventSO CanPressQEvent;
     public VoidEventSO GetDishEvent;
+    public VoidEventSO DeathLookPlayerEvent;
     public void Awake()
     {
         inputActions = new InputPlayController();
@@ -421,7 +422,6 @@ public class MoveCOntroller : MonoBehaviour
         CanPressQEvent.OnEventRaised += OnCanPressQ;
         GetDishEvent.OnEventRaised += OnGetDash;
     }
-
     private void OnGetDash()
     {
         isGetDish = true;

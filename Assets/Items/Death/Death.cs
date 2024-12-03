@@ -20,6 +20,7 @@ public class Death : MonoBehaviour
     private float Starttime_count;
     [Header("¹ã²¥")]
     public VoidEventSO LookPlayerEvent;
+    public VoidEventSO DeathLookPlayerEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public TransformEventSO PlayerPositionEvent;
     public VoidEventSO DeadEvent;
@@ -32,7 +33,7 @@ public class Death : MonoBehaviour
         Starttime_count = Starttime;
        anim = GetComponent<Animator>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsOpen)
         {
@@ -54,9 +55,10 @@ public class Death : MonoBehaviour
             if(Starttime_count < 0)
             {
                 LookPlayerEvent.RaiseEvent();
+                DeathLookPlayerEvent.RaiseEvent();
                 StartCoroutine(WaitTime());
             }
-            gameObject.transform.position = new Vector3(transform.position.x + (float)0.01, transform.position.y, transform.position.z);
+            gameObject.transform.position = new Vector3(transform.position.x + (float)0.05, transform.position.y, transform.position.z);
         }
     }
     private IEnumerator WaitTime()
@@ -89,7 +91,6 @@ public class Death : MonoBehaviour
             gameObject.transform.localPosition = new Vector3(Position.position.x + PositionAdjust_X, Position.position.y + PositionAdjust_Y, 0);
         }
     }
-
     private void OnDisable()
     {
         PlayerPositionEvent.OnTransformEventRaised -= OnGetPositon;
