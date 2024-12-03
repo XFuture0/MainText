@@ -28,7 +28,21 @@ public class TextManager : MonoBehaviour
         inputActions = new InputPlayController();
         inputActions.Enable();
         inputActions.Player.Enter.started += OnEnterText;
-        Name.text = "???";
+        switch (Textlist[index])
+        {
+            case "A\r":
+                Name.text = "Player";
+                index++;
+                break;
+            case "B\r":
+                Name.text = "???";
+                index++;
+                break;
+            case "C\r":
+                Name.text = "KaKa";
+                index++;
+                break;
+        }
         MainText.text = Textlist[1].ToString();
         index = 2;
     }
@@ -65,7 +79,7 @@ public class TextManager : MonoBehaviour
                 index++;
                 break;
             case "C\r":
-                Name.text = "สนี฿";
+                Name.text = "KaKa";
                 index++;
                 break;
         }

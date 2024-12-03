@@ -16,7 +16,6 @@ public class DeadBlock : MonoBehaviour
     {
         if (other.tag == "Player" && isHitsth)
         {
-            Debug.Log("1");
             isHitsth = false;
             if (!(gameObject.tag == "CanDestory"))
             {

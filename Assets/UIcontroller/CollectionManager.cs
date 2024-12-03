@@ -8,9 +8,12 @@ public class CollectionManager : MonoBehaviour
 {
     public GameObject Collection_Canvs;
     public TextMeshProUGUI NumBertext;
+    [Header("¹ã²¥")]
+    public FlaotEventSO CollectionCountEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO CollectionAddEvent;
-    private int Num;
+    public VoidEventSO EndDataEvent;
+    public int Num;
     private void Awake()
     {
         Num = 0;
@@ -18,7 +21,14 @@ public class CollectionManager : MonoBehaviour
     private void OnEnable()
     {
         CollectionAddEvent.OnEventRaised += AddNumber;
+        EndDataEvent.OnEventRaised += OnCastEndData;
     }
+
+    private void OnCastEndData()
+    {
+        CollectionCountEvent.FloatRaiseEvent(Num);
+    }
+
     private void AddNumber()
     {
         Collection_Canvs.SetActive(true);
@@ -34,5 +44,6 @@ public class CollectionManager : MonoBehaviour
     private void OnDisable()
     {
         CollectionAddEvent.OnEventRaised -= AddNumber;
+        EndDataEvent.OnEventRaised -= OnCastEndData;
     }
 }

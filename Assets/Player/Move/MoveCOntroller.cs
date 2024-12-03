@@ -16,6 +16,7 @@ public class MoveCOntroller : MonoBehaviour
     public Animator anim;
     public Transform own;
     public bool isGetDish;
+    public int Dead_Count;
     [Header("附属物")]
     public GameObject Dish;
     public GameObject Attack3;
@@ -71,6 +72,7 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO RestartEvent;
     public VoidEventSO FadeinEvent;
     public TransformEventSO PlayerPositionEvent;
+    public FlaotEventSO PlayDeadCountEvent;
     [Header("人物死亡")]
     public bool isDead;
     [Header("事件监听")]
@@ -87,8 +89,11 @@ public class MoveCOntroller : MonoBehaviour
     public VoidEventSO CanPressQEvent;
     public VoidEventSO GetDishEvent;
     public VoidEventSO DeathLookPlayerEvent;
+    public VoidEventSO ClosePlayerEvent;
+    public VoidEventSO EndDataEvent;
     public void Awake()
     {
+        Dead_Count = 0;
         inputActions = new InputPlayController();
         rb = GetComponent<Rigidbody2D>();
         check = GetComponent<Check>();
@@ -421,7 +426,20 @@ public class MoveCOntroller : MonoBehaviour
         eyeJumpEvent.OnEventRaised += PlayerJump_eye;
         CanPressQEvent.OnEventRaised += OnCanPressQ;
         GetDishEvent.OnEventRaised += OnGetDash;
+        ClosePlayerEvent.OnEventRaised += OnClosePlayer;
+        EndDataEvent.OnEventRaised += OnCastEndData;
     }
+
+    private void OnCastEndData()
+    {
+        PlayDeadCountEvent.FloatRaiseEvent(Dead_Count);
+    }
+
+    private void OnClosePlayer()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     private void OnGetDash()
     {
         isGetDish = true;
@@ -500,6 +518,7 @@ public class MoveCOntroller : MonoBehaviour
     {
         if (!isDead)
         {
+            Dead_Count++;
             DeadAudioEvent.AudioRaiseEvent(DeadClip);
             anim.SetTrigger("Dead");
             isDead = true;
@@ -553,5 +572,7 @@ public class MoveCOntroller : MonoBehaviour
         eyeJumpEvent.OnEventRaised -= PlayerJump_eye;
         CanPressQEvent.OnEventRaised -= OnCanPressQ;
         GetDishEvent.OnEventRaised -= OnGetDash;
+        ClosePlayerEvent.OnEventRaised -= OnClosePlayer;
+        EndDataEvent.OnEventRaised -= OnCastEndData;
     }
 }
