@@ -530,6 +530,8 @@ public class MoveCOntroller : MonoBehaviour
         {
             if (!isDead)
             {
+                Debug.Log("1");
+                Dead_Count++;
                 anim.SetTrigger("Dead");
                 isDead = true;
                 inputActions.Disable();
