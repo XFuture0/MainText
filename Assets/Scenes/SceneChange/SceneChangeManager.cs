@@ -14,6 +14,7 @@ public class SceneChangeManager : MonoBehaviour
     public GameObject StopMenu;
     public GameObject empty;
     public GameObject Energy_Line;
+    public SceneSO FirstScene;
     private SceneSO currentscene;
     private SceneSO ChangeScene;
     private Vector3 ChangePosition;
@@ -37,6 +38,10 @@ public class SceneChangeManager : MonoBehaviour
     public VoidEventSO UnLoadEvent;
     public VoidEventSO StopPlayerEvent;
     public VoidEventSO ContinuePlayerEvent;
+    private void Start()
+    {
+        FirstScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+    }
     private void OnEnable()
     {
         ChangeEvent.OnSceneChangeEvent += OnChangeScene;

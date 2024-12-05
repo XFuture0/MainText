@@ -9,7 +9,6 @@ public class Death : MonoBehaviour
     public float PositionAdjust_Y;
     public float HitAdjust_X;
     public GameObject Hit;
-    private int n = 0;
     private Animator anim;
     private bool IsOpen;
     private bool canMove;
@@ -40,13 +39,8 @@ public class Death : MonoBehaviour
             time_count -= Time.deltaTime;
             if (time_count < 0)
             {
-                n = UnityEngine.Random.Range(1, 2);
                 time_count = time;
-            }
-            if (n == 1)
-            {
                 anim.SetTrigger("Hit");
-                n = 0;
             }
         }
         if (canMove)
@@ -83,6 +77,8 @@ public class Death : MonoBehaviour
     private void OnStopPlayer()
     {
         IsOpen = false;
+        time_count = time;
+        anim.Play("Base Layer.Hide");
     }
     private void OnGetPositon(Transform Position)
     {

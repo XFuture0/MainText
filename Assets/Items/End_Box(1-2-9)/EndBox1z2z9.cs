@@ -9,10 +9,14 @@ public class EndBox1z2z9 : MonoBehaviour
     public GameObject End_Canvs;
     [Header("¹ã²¥")]
     public VoidEventSO StopPlayerEvent;
+    public VoidEventSO CloseBGMEvent;
+    public VoidEventSO CloseBGMFEvent;
     [Header("ÊÂ¼þ¼àÌý")]
     public VoidEventSO OpenEndCanvsEvent;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        CloseBGMEvent.RaiseEvent();
+        CloseBGMFEvent.RaiseEvent();
         StopPlayerEvent.RaiseEvent();
         End_Text.SetActive(true);
     }

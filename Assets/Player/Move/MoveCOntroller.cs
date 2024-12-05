@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
@@ -64,11 +63,9 @@ public class MoveCOntroller : MonoBehaviour
     public AudioEventSO DashAudioEvent;
     public AudioEventSO JumpAudioEvent;
     public AudioEventSO PlayerAttack3AudioEvent;
-    public AudioEventSO DeadAudioEvent;
     public AudioClip DashClip;
     public AudioClip JumpClip;
     public AudioClip PlayerAttack3Clip;
-    public AudioClip DeadClip;
     public VoidEventSO RestartEvent;
     public VoidEventSO FadeinEvent;
     public TransformEventSO PlayerPositionEvent;
@@ -519,7 +516,6 @@ public class MoveCOntroller : MonoBehaviour
         if (!isDead)
         {
             Dead_Count++;
-            DeadAudioEvent.AudioRaiseEvent(DeadClip);
             anim.SetTrigger("Dead");
             isDead = true;
             inputActions.Disable();

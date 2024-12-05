@@ -15,7 +15,7 @@ public class CollectionBlock_Blue : MonoBehaviour
     public AudioClip Clip;
     [Header("广播")]
     public AudioEventSO GetBlueAudioEvent;
-    public VoidEventSO CloseItemAudioEvent;
+    public VoidEventSO CloseFXAudioEvent;
     [Header("事件监听")]
     public VoidEventSO GetBlueEvent;
     [Header("计时器")]
@@ -53,7 +53,7 @@ public class CollectionBlock_Blue : MonoBehaviour
                 if (!CloseAudio)
                 {
                     CloseAudio = true;
-                    CloseItemAudioEvent.RaiseEvent();
+                    CloseFXAudioEvent.RaiseEvent();
                 }
             }
         }
