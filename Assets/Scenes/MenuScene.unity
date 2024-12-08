@@ -963,6 +963,7 @@ MonoBehaviour:
   Setting_State_Close_Event: {fileID: 11400000, guid: 11fb9aac4ab7c4740aeba7fcba6c8d36, type: 2}
   NewGameEvent: {fileID: 11400000, guid: 5cb64cbf7595d4e4c86c732e5f9dde3f, type: 2}
   CloseTargetEvent: {fileID: 11400000, guid: 16896e3264b996e49a238ac2cce7b418, type: 2}
+  CloseBGMEvent: {fileID: 11400000, guid: 0914837b77dc865468c84f3191c64e45, type: 2}
 --- !u!1 &1174260741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM1: {fileID: 8300000, guid: 6f48fde1ae0034340bdd6f389cab9dd7, type: 3}
-  BGMF1: {fileID: 8300000, guid: 3b9f26ead826ef74c830a48329e61a49, type: 3}
+  BGMF1: {fileID: 8300000, guid: a3ea8386b6360494f854654827aa8c73, type: 3}
   BGMEvent: {fileID: 11400000, guid: 8db17f52035054e46b659fca942a9c83, type: 2}
   BGMFEvent: {fileID: 11400000, guid: 3cc295675a83ab246b21d1922fca4351, type: 2}
 --- !u!1 &1198179043

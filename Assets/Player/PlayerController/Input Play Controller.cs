@@ -107,6 +107,15 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WDMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""7339ced2-bb90-4fb5-b01d-0e9e315f7922"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -228,6 +237,17 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8e8352f-cd2f-4b82-b7f7-68b7fee3f3e8"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WDMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -355,6 +375,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Enter = m_Player.FindAction("Enter", throwIfNotFound: true);
+        m_Player_WDMode = m_Player.FindAction("WDMode", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_In = m_UI.FindAction("In", throwIfNotFound: true);
@@ -432,6 +453,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Enter;
+    private readonly InputAction m_Player_WDMode;
     public struct PlayerActions
     {
         private @InputPlayController m_Wrapper;
@@ -445,6 +467,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Enter => m_Wrapper.m_Player_Enter;
+        public InputAction @WDMode => m_Wrapper.m_Player_WDMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -481,6 +504,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Enter.started += instance.OnEnter;
             @Enter.performed += instance.OnEnter;
             @Enter.canceled += instance.OnEnter;
+            @WDMode.started += instance.OnWDMode;
+            @WDMode.performed += instance.OnWDMode;
+            @WDMode.canceled += instance.OnWDMode;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -512,6 +538,9 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
             @Enter.started -= instance.OnEnter;
             @Enter.performed -= instance.OnEnter;
             @Enter.canceled -= instance.OnEnter;
+            @WDMode.started -= instance.OnWDMode;
+            @WDMode.performed -= instance.OnWDMode;
+            @WDMode.canceled -= instance.OnWDMode;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -618,6 +647,7 @@ public partial class @InputPlayController: IInputActionCollection2, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnEnter(InputAction.CallbackContext context);
+        void OnWDMode(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "WDMode",
+                    "type": "Button",
+                    "id": "7339ced2-bb90-4fb5-b01d-0e9e315f7922",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -206,6 +215,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8e8352f-cd2f-4b82-b7f7-68b7fee3f3e8",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WDMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

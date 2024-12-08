@@ -16,6 +16,8 @@ public class MoveCOntroller : MonoBehaviour
     public Transform own;
     public bool isGetDish;
     public int Dead_Count;
+    [Header("外挂系统")]
+    public bool WDMode;
     [Header("附属物")]
     public GameObject Dish;
     public GameObject Attack3;
@@ -106,6 +108,7 @@ public class MoveCOntroller : MonoBehaviour
         inputActions.Player.Move.canceled += CancelAD;
         inputActions.Player.Throw.started += ThrowDish;
         inputActions.Player.Attack.started += PlayerAttack;
+        inputActions.Player.WDMode.started += PlayerWDMode;
         inputActions.Enable();
         Jump_time = 0;
         DashTimeCount = 2 * Dash_count;
@@ -142,6 +145,22 @@ public class MoveCOntroller : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (WDMode)
+        {
+            rb.gravityScale = 0;
+            if (isPressW)
+            {
+                rb.velocity += new Vector2(0, (float)0.25);
+            }
+            if (isPressS)
+            {
+                rb.velocity += new Vector2(0, (float)-0.25);
+            }
+            if(!isPressW && !isPressS)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+        }
         if (!isDash && !isDead)
         {
             if (DashTimeCount < 2 * Dash_count)
@@ -159,8 +178,11 @@ public class MoveCOntroller : MonoBehaviour
         }
         if (isJump && Jump_time < Target_Jump_Time)
         {
-            Jump_time += Time.deltaTime;
-            rb.velocity = new Vector2(rb.velocity.x,OnJump + StartJump * Jump_time);
+            if (!WDMode)
+            {
+                Jump_time += Time.deltaTime;
+                rb.velocity = new Vector2(rb.velocity.x, OnJump + StartJump * Jump_time);
+            }
         }
         else if (!isJump || Jump_time > Target_Jump_Time)
         {
@@ -409,6 +431,15 @@ public class MoveCOntroller : MonoBehaviour
             }
         }
     }
+    private void PlayerWDMode(InputAction.CallbackContext context)
+    {
+        WDMode = !WDMode;
+        if (!WDMode)
+        {
+            rb.velocity += new Vector2(0, -5);
+        }
+        rb.gravityScale = MainGravity;
+    }
     private void OnEnable()
     {
         DeadEvent.OnEventRaised += Dead;
@@ -513,24 +544,10 @@ public class MoveCOntroller : MonoBehaviour
 
     private void Dead()
     {
-        if (!isDead)
-        {
-            Dead_Count++;
-            anim.SetTrigger("Dead");
-            isDead = true;
-            inputActions.Disable();
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            FadeinEvent.RaiseEvent();
-            StartCoroutine(Restart());
-        }
-    }
-    private void NoDead()
-    {
-        if (!isDash)
+        if (!WDMode)
         {
             if (!isDead)
             {
-                Debug.Log("1");
                 Dead_Count++;
                 anim.SetTrigger("Dead");
                 isDead = true;
@@ -538,6 +555,25 @@ public class MoveCOntroller : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 FadeinEvent.RaiseEvent();
                 StartCoroutine(Restart());
+            }
+        }
+    }
+    private void NoDead()
+    {
+        if (!WDMode)
+        {
+            if (!isDash)
+            {
+                if (!isDead)
+                {
+                    Dead_Count++;
+                    anim.SetTrigger("Dead");
+                    isDead = true;
+                    inputActions.Disable();
+                    rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    FadeinEvent.RaiseEvent();
+                    StartCoroutine(Restart());
+                }
             }
         }
     }

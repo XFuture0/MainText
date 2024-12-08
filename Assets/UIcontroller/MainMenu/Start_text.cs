@@ -21,6 +21,7 @@ public class Start_text : MonoBehaviour
     [Header("¹ã²¥")]
     public SceneChangeEventSO NewGameEvent;
     public VoidEventSO CloseTargetEvent;
+    public VoidEventSO CloseBGMEvent;
     private void Awake()
     {
         inputActions = new InputPlayController();
@@ -62,6 +63,7 @@ public class Start_text : MonoBehaviour
     }
     public void StartGame()
     {
+        CloseBGMEvent.RaiseEvent();
         CloseTargetEvent.RaiseEvent();
         NewGameEvent.RaiseSceneChangeEvent(currentscene,ChangeScene,ChangePosition);
         SceneManager.UnloadSceneAsync(currentscene.SceneName);
